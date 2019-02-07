@@ -1,0 +1,400 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+
+% Title Page
+\title{Software Development Project - 1DV600}
+\author{Claes Weyde}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{The Marvelous Hanging Man}
+\fancyhead[RE,LO]{Claes Weyde}
+\fancyfoot[CE,CO]{\leftmark}
+\fancyfoot[LE,RO]{\thepage}
+\fancyfoot[RE,LO]{Version 1.4}
+
+
+
+\begin{document}
+\maketitle
+\newpage
+\tableofcontents{}
+\newpage
+
+\section{Revision history}
+\begin{center}
+	\begin{tabular}{|c|c|c|c|} 
+		\hline
+		Date & Version & Description & Author \\ [0.5ex] 
+		\hline\hline
+		05.02.2019 & Version 1.0 & Skeleton document provided & Claes Weyde \\
+		\hline
+		06.02.2019 & Version 1.1 & Vision, first draft of project plan section & 
+		Claes Weyde \\
+		\hline
+		07.02.2019 & Version 1.2 & Project plan finished & Claes Weyde \\ [1ex] 
+		\hline
+		07.02.2019 & Version 1.3 & General information finished & Claes Weyde \\
+		\hline
+		07.02.2019 & Version 1.4 & Iteration and Risk analysis & Claes Weyde \\ [1ex]
+		\hline
+		
+	\end{tabular}
+\end{center}
+\newpage
+\section{General Information}
+\begin{tabular}{ |c|c|  }
+	\hline
+	\multicolumn{2}{|c|}{\textbf{Project Summary}} \\
+	\hline
+	\textbf{Project Name} & \textbf{Project ID} \\
+	\hline
+	The Marvelous Hanging Man & HM-001 \\
+	\hline
+	\textbf{Project Manager} & \textbf{Main client} \\
+	\hline
+	Claes Weyde & Language learners   \\
+	\hline
+	\multicolumn{2}{|c|}{\textbf{Key Stakeholders}}\\
+	\hline
+	\multicolumn{2}{|l|}{Developing team, main client/end user}\\
+	\hline
+	\multicolumn{2}{|c|}{\textbf{Executive summary}}\\
+	\hline
+	\multicolumn{2}{|l|}{Developing a text and ASCII-art based game of hangman for}\\
+	\multicolumn{2}{|l|}{the language learner, as well as for the gamer looking for}\\
+	\multicolumn{2}{|l|}{a cognitive challenge.}\\
+	\multicolumn{2}{|l|}{The project will be split up into a planning phase, a modeling}\\
+	\multicolumn{2}{|l|}{ and implementation phase, a testing phase and an}\\
+	\multicolumn{2}{|l|}{ evolutionary phase.}\\
+	\multicolumn{2}{|l|}{The project is planned to take about 7 weeks and the  }\\
+	\multicolumn{2}{|l|}{complete application will be delivered on the 22 of March 2019.}\\
+
+	\hline
+	
+\end{tabular}
+\newpage
+\section{Vision}
+Hangman re-imagined! Our vision for this project is to create a version of Hangman which will keep the user at the edge of her or his seat. To not only provide entertainment and leisure, but also thought-provoking imagery and themes. 
+\newline
+\newline
+ The Hangman game we envision will be a text-based console application where the user will play hangman. The end user we primarily envision is a person learning a new language or trying to increase their grasp of a language which they already known. By making the process fun we believe that learning is facilitated and that the user will have a easier time recalling the material. However, the game is not only aimed at language learners but also to the casual player looking for a bit of fun.
+ \newline
+ 
+ \newline
+ To aid learning and encourage competitiveness (which may be a means for aiding learning) a high-score system should be implemented, giving the user the possibility of competing against him or herself and other users. Furthermore, we also envision the usage of incentives for the user who performs well. The high-score is certainly one, but another may be the possibility of adding new words to the game. Thereby the well-performing user have the ability of evolving the game further. To cater to different users, as well as to allow the avid user to constantly evolve, we also envision the possibility for the player to choose a difficulty.
+ \newline
+ 
+ \newline
+  In short, we aim to deliver a game where fun and learning combine in an intuitive end product!
+  \subsection{Reflection}
+  It is hard to provide a vision at such an early phase and for such a bare-bones project without adding all the bells and whistles I can imagine. It would certainly be possible (and fun) to add more and more functionality in the vision, but somewhere the rubber must meet the road, and my goal is to have to remove as few features as possible when that happens. Therefore I tried to keep the vision as realistic as possible given what time I have at my disposal. Since this is one of the first sections I write I feel that my grasp on the project is tenuous at best, which is why my main goal is to provide a vision with a high probability of success. Perhaps at the cost of any chances for a bestselling application.  
+
+
+\newpage 
+\section{Project Plan}
+\subsection{Introduction}
+The aim of this project is to develop a game of hangman which fulfills as many of the properties specified in the vision above as possible, within the time available for the course.
+\subsection{Justification}
+The justification for this application is, at the most superficial level, that it is required in order to pass the course 1DV600. However, a deeper, and most probable more important justification is that the development of this application as well as the documentation will help me become a better developer with a deeper understanding of the project of development, i.e. not just the coding but planning, implementation, testing and (perhaps to a lesser extent) maintenance. Furthermore, the game itself may be justified in this day and age by the (at least anecdotally) reduced spelling capabilities of the population, which may stem from the ubiquitous auto-correct functionality used whenever we write. 
+\subsection{Stakeholders}
+The stakeholders for this project are listed below.
+\begin{itemize}
+	\item Management - The management want a product according to their specifications and budget. The management will evaluate the iterations of the product as well as the end-product with a view to costs and possible revenue.
+	\item Project Manager - The project manager is ultimately responsible for the success of the project. Thus, the project manager will focus on the processes, timetables and workings of the group in order to ensure that the project is successfully completed. 
+	\item Developer - The person or team performing the actual work of coding the software. The main focus of the developer is to arrive at an executable application of the game, i.e. a playable hangman application.
+	\item Test lead - the person responsible for the validation of the software. The main focus of the test lead will be to ensure that the software does not contain any bugs and works according to the specifications.
+	\item End user - the person(s) that will use the application. The main perspective of the end user is that the experience of using the application is enjoyable and perhaps efficient (depending on the type of application). Since this project is a game the end user most probably is looking for a fun experience, something which he/she wants to do during their downtime. The end user envisioned here is primarily the language learner looking for a fun software to increase their spelling proficiency. 
+\end{itemize}
+The author of this document will take on the roles of both project manager, developer and test lead.
+\subsection{Resources}
+The resources used to develop this application and documentation are as follows.
+\begin{itemize}
+	\item Hardware: a custom desktop computer and a Lenovo laptop computer are used for this project.
+	\item Software
+	\begin{itemize}
+		\item Documentation: TeXStudio is used in conjunction with MikTex in order to produce the documentation.
+		\item Application: The application is written in Visual Studio Code using Node.
+	\end{itemize}
+	\item Time: The time available for the project ranges between 6 and 15 hours/week.
+\end{itemize}
+\subsection{Hard- and Software Requirements}
+The hardware requirements for this application will be very low. The application will be guaranteed to run on a computer having:
+\begin{itemize}
+	\item Hardware
+		\begin{itemize}
+		\item At least 1 GB RAM
+		\item CPU having a frequency of 1.1 GHz and higher.   
+	\end{itemize}
+	\item Software
+	\begin{itemize}
+		\item Operating system: Win 7 or greater, OS X 10.7 or greater.
+	\end{itemize}
+\end{itemize} 
+\subsection{Overall Project Schedule}
+\begin{center}
+	\begin{tabular}{|c|c|c|} 
+		\hline
+		Iteration & Deliverable & Date \\ [0.5ex] 
+		\hline\hline
+		Iteration 1 & Documentation draft 1  & 08.02.2019 \\ 
+		\hline
+		Iteration 1 & Skeleton Code & 02.08.2019 \\
+		\hline
+		Iteration 2 & Documentation draft 2 & 22.02.2019  \\
+		\hline
+		Iteration 2 & UML documentation & 22.02.2019  \\
+		\hline
+		Iteration 2 & Working code implemented & 22.02.2019  \\
+		\hline
+		Iteration 3 & Documentation draft 3 & 08.03.2019  \\
+		\hline
+		Iteration 3 & TBD (testing) & 08.03.2019  \\
+		\hline
+		Iteration 4 & Complete documentation & 22.03.2019  \\
+		\hline
+		Iteration 4 & Complete project & 22.03.2019  \\ [1ex] 
+		\hline
+	\end{tabular}
+\end{center}
+\subsection{Scope, Constraints, Assumptions}
+\subsubsection{Scope}
+The scope of the project will now be delimited by the functional requirements set forth below.
+\begin{itemize}
+	\item \textbf{UI} The user interface will be text-based, thus no GUI will be developed.
+	\item \textbf{Menu} The application will have a starting menu consisting of:
+	\begin{itemize}
+		\item \textbf{Login} Where the user can log in to use a saved account.
+		\item \textbf{Difficulty} Where the user can set the difficulty level of the game.
+		\item \textbf{High-score} Where the user can see the current high scores.
+		\item \textbf{Manage words} Where a "super user" can remove and add words to the game. The "super user" will be a logged in user having special authorization. Thus, this choice cannot be made by regular users. Alternatively a special password will be required in order to access this menu item.
+		\item \textbf{Play} - Where the user can start a new game.
+	\end{itemize}
+	\item \textbf{Difficulty} The game will have at least three difficulty levels: easy, moderate and hard. The difficulty level chosen will determined the words drawn and the number of incorrect letters the user may write. As a starting point the number of incorrect letters will be 3 for hard, 5 for moderate and 7 for easy. The words drawn may be determined based on the number of letters contained within the word. Alternatively the difficulty of the words may be a property or characteristic of the word which is set when the word is first saved. This property may also be adjustable in the manage words category of the menu.
+	\item \textbf{High-scores} The 10 highest score for each difficulty will saved. The score will be based on the amount of words successfully completed before the user quit or lost the game. The player loses the game when the man is hanged.
+	\item \textbf{Timer} A timer will be implemented which keeps track of the time used for each word. The mean may be determined and shown if the game makes it to the high-score. The running time will be shown as the player plays the game.
+	\item \textbf{Adding words} If the user achieves a high-score he/she will have the possibility of adding a word to the words of the game.
+	\item \textbf{Managing words} The super user (or the user having the right password depending on the implementation) will be able to manage the words by choosing this option in the menu. The user should have the ability to remove words, add words as well as changing the words and their difficulty assessment.
+	\item \textbf{Graphics} The hanged man will be shown using ASCII-art.
+\end{itemize}
+\subsubsection{Constraints}
+The constraints are itemized below
+\begin{itemize}
+	\item \textbf{Time}	The main constraint will be the time available since most of the team (i.e. me) work full-time. Thus, the time available need to be managed closely and used efficiently. 
+	\item \textbf{Knowledge/Skill} The knowledge of the team will be the second constraint which is also heavily intertwined with the time constraint above. Since the time is limited the time it takes to solve the problems which arise, as well as learn new stuff is of importance. Thus, the working knowledge available is a further constraint which will hinder the development. 
+\end{itemize}
+
+\subsubsection{Assumptions}
+The end user is assumed to have a working knowledge of computers and using the console for playing. Further assumptions are that the end user is literate as well as able to see since the game will not provide any audio.
+
+\subsection{Reflection}
+When preparing the project plan it soon becomes obvious that it is \emph{hard} to plan a project at a detailed level. The work may initially feel a bit wasted, especially since it requires quite a large amount of time. However, as the project plan has taken shape I feel that it will be quite valuable to revert back to in order to see how the application is measuring up to the plan. Furthermore, the more detailed plans with time scheduling is useful when time is a high-valued and sparse commodity. It will also be interesting to update the document as the work progresses and from the document evaluate my ability to estimate and plan. For me personally it is also very good to learn the skill of planning before performing the work, since I have a habit of jumping right into the coding.
+\newpage
+\section{Iterations}
+\subsection{Iteration 1}
+
+In this iteration the project plan is to be finished as well as some skeleton code. The specific entities to complete are itemized below.
+\subsubsection{To-do}
+\begin{itemize}
+	\item Prepare github repository
+	\item Study theory
+	\begin{itemize}
+		\item Study chapters 2-3 and 22-23 in the coursebook.
+		\item View lectures 1-3.
+	\end{itemize}
+	\item Project plan
+	\begin{itemize}
+		\item Prepare document skeleton using LaTeX in github.
+		\item Plan the project with regards to features, functions and constraints.
+		\item Write all sections as thoroughly as possible given the current information available.
+	\end{itemize}
+	\item Code implementation
+	\begin{itemize}
+		\item Set up environment; package.json, .gitignore etc.
+		\item Skeleton code
+		\begin{itemize}
+			\item Player class, 
+			\item Word class
+			\item File handler class. 
+			\item High-scores class.
+			\item Game module, starting point module (app.js).
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+\subsubsection{Time estimates and Time log}
+\begin{center}
+	\begin{tabular}{|c|c|c|} 
+		\hline
+		Task & Estimate [hrs] & Actual time [hrs] \\ [0.5ex] 
+		\hline\hline
+		Prepare github repository & 0.5 & 0.25\\
+		\hline 
+		Study book & 2 & 2.5 \\
+		\hline
+		Lectures & 5 & 3 \\
+		\hline 
+		Document skeleton & 0.5 & 1 \\
+		\hline 
+		Plan project & 1 & ~2\\
+		\hline
+		Write sections & 4 & ~4\\
+		\hline 
+		Setup coding environment & 0.25 & 0.25\\
+		\hline 
+		Skeleton code & 2 & \\ 
+		\hline
+		Total time & 15.25 & \\ [1ex]
+		\hline 
+	\end{tabular}
+\end{center}
+
+\subsection{Iteration 2}
+In this iteration the game features will be modeled using UML and thereafter implemented.
+\subsubsection{To-do}
+\begin{itemize}
+	\item Study theory
+	\begin{itemize}
+		\item Study chapters 4-7, 15 and 20 in the course book.
+		\item View lectures 4-8.
+	\end{itemize}
+	\item Update project document.
+	\item Prepare UML for functionality.
+	\item Code implementation.
+	\begin{itemize}
+		\item Implement the features modeled using UML.
+	\end{itemize}
+\end{itemize}
+\subsubsection{Time estimates and Time log}
+\begin{center}
+	\begin{tabular}{|c|c|c|} 
+		\hline
+		Task & Estimate [hrs] & Actual time [hrs] \\ [0.5ex] 
+		\hline\hline
+		Study book & 4 & --\\
+		\hline
+		Lectures & 6 & --\\
+		\hline 
+		Document update & 1 & --\\
+		\hline 
+		UML & 5 & -- \\
+		\hline
+		Coding & 5 & -- \\ 
+		\hline
+		Total time & 21 & -- \\ [1ex]
+		\hline 
+	\end{tabular}
+\end{center}
+\subsection{Iteration 3}
+In this iteration the implemented features of the application will be validated through testing. Furthermore, some functionality may be implemented here as well.
+\subsubsection{To-do}
+\begin{itemize}
+	\item Study theory
+	\begin{itemize}
+		\item Study chapter 9 in the course book.
+		\item View lectures 9 and 10.
+	\end{itemize}
+	\item Update project document.
+	\item Prepare testing framework and perform tests.
+	\item Code implementation.
+	\begin{itemize}
+		\item Implement testing.
+		\item Implement possible further features.
+	\end{itemize}
+\end{itemize}
+\subsubsection{Time estimates and Time log}
+\begin{center}
+	\begin{tabular}{|c|c|c|} 
+		\hline
+		Task & Estimate [hrs] & Actual time [hrs]\\ [0.5ex] 
+		\hline\hline
+		Study book & 1.5 & --\\
+		\hline
+		Lectures & 2 & -- \\
+		\hline 
+		Document update & 1 & -- \\
+		\hline 
+		Testing & 8 & --\\
+		\hline
+		Coding & 3 & --\\ 
+		\hline
+		Total time & 15.5 & -- \\ [1ex]
+		\hline 
+	\end{tabular}
+\end{center}
+\subsection{Iteration 4}
+After this iteration the game is supposed to be finished. Some additional features may be implemented but the focus will be on a well working application.
+\subsubsection{To-do}
+\begin{itemize}
+	\item Plan work
+	\begin{itemize}
+		\item Is required functionality missing?
+		\item Should new functionality be implemented?
+		\item Prioritize what needs to be done.
+	\end{itemize}
+	\item Update project document.
+	\item Possible: Implement new features.
+	\begin{itemize}
+		\item Prepare UML for new features.
+		\item Implement new features.
+		\item Test new features as well as whole game.
+	\end{itemize}
+	\item Complete and hand in project.
+\end{itemize}
+\subsubsection{Time estimates and Time log}
+\begin{center}
+	\begin{tabular}{|c|c|c|} 
+		\hline
+		Task & Estimate [hrs] & Actual time \\ [0.5ex] 
+		\hline\hline
+		Plan work & 2 & -- \\ 
+		\hline
+		Document update & 1 & --\\
+		\hline 
+		Possible implementation & 10-15 & -- \\ 
+		\hline
+		Finish up and hand in & 2 & --\\ 
+		\hline 
+		Total time & 20 & --\\ [1ex]
+		\hline
+		
+	\end{tabular}
+\end{center}
+\newpage
+\section{Risk Analysis}
+The overarching risks for this project is connected to the time available for performing the work. The possibility of a hardware failure is for example relatively low, especially considering the redundancy afforded by having two computers available. However, due to severe constraints regarding the time available all risks which reduces the available time are quite serious. Since all events will impact the time available they are all quite serious which make the most probable events most important (since both the impact and the probability are quite high). Thus, a lot of effort will have to be made to make sure that probable events are avoided or mitigated. The staff has children in pre-school which unfortunately equates to a lot of sickness. The probability that this event occurs is hard to reduce which is why the effect of such a event must be mitigated. In an effort to create somewhat of a buffer for these kind of events it is wise to try and keep ahead of schedule if possible.
+\newline
+\newline
+Thus, the key risks have to do with estimations and people working within the project, both are risks in relation to the time available. There is no significant risk that changes to the software, as a response to management or costumer wishes, will need to be performed. The hardware risks are low as explained above. Since the application is a very basic application there are also no great risks in tools or technology changes impacting the development process. 
+\subsection{List of risks}
+Based on the above discussion a list of risks are presented below. Only risks which are deemed at all possible has been accounted for in the list. As can be seen, the risks are all related to the available time.
+\begin{center}
+	\begin{tabular}{|c|c|c|} 
+		\hline
+		Risk & Probability & Impact\\ [0.5ex] 
+		\hline\hline
+		Hardware failure & Low & Catastrophic \\ 
+		\hline
+		Illness & High & Serious \\
+		\hline
+		Underestimation of time requirements & Moderate & Serious \\ 
+		\hline
+		Too many features required in application & Moderate & Serious \\ 
+		\hline
+		
+	\end{tabular}
+\end{center}
+\subsection{Strategies}
+Since most of the risks are time-related the most prudent course of action is working ahead of schedule and use all time available. Thus, theory may e.g. be studied during transportation to and from events. Furthermore, in order to be use the available time efficiently it is important that the staff get good sleep and exercise regularly, which is why this is encouraged. This is a more general approach to utilization of the available time in an efficient manner. In the sections below each specific risk will be briefly addressed.
+\subsubsection{Hardware failure}
+Even though this risk is quite low it is still considered since such an event would be catastrophic. In order to reduce the likelihood of a hardware failure redundant systems are used (i.e. two computers). In the unlikely event of both systems failing a borrowed computer will have to do. This will of course be costly from a time-perspective but less so than having to buy a new computer.
+\subsubsection{Illness}
+This is a quite probable risk. Either that the developer himself falls ill or that his child do. The risk of the first scenario may be reduced by the measures described above as well as by eating healthy. To a certain point the same applies to the developers child. If the child would fall ill a fallback approach would be to enlist the help of other people to take care of the child and in that way increase the time for working on the project. Other remedies are of course medication in case of severe illness.
+\subsubsection{Underestimation of time requirements}
+This is a risk which is hard to reduce initially. However, as the project develops the time estimates may be adjusted based on experience. Thus, by minimizing the fault in the estimation the risk of the event happening will be lower. The risk may also be reduced by knowingly overestimating the time for each task by a certain factor, to create a buffer of sorts. If the time requirements have been greatly underestimated some requirements in the coming iterations may need to be scrapped in favor of essential requirements.
+\subsubsection{Too many features required in application}
+This risk is also quite probable and is mainly reduced by having a realistic approach in the planning stages. Prioritizing the requirements may be performed in order to let go of features which are not essential if it is determined that the time will not be enough for completing all the features. A core list of essential features must therefore be determined and prioritized during development. 
+\subsection{Reflection}
+I felt that performing the risk analysis was quite hard. For my specific situation, developing a quite basic application and having a very limited amount of time, it feels like the risk will always be related to time. If no direct costs are involved I guess the risk is almost always to complete the project in time (assuming that the project is possible to complete at all). This is very true here as well, especially considering the fact that the application is quite limited (in this sense it is not a risk that the application cannot be developed). I feel that risk analysis will be quite different in a large project, considering management, customers, budget etc. But this is still a healthy exercise I believe.
+
+\end{document}          
