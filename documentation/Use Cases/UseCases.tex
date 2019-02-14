@@ -1,0 +1,293 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+
+% Title Page
+\title{Use cases for the Hangman project}
+\author{Claes Weyde}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L,R]{The Marvelous Hanging Man - Use cases}
+\fancyhead[R,L]{Claes Weyde}
+\fancyfoot[C,C]{\leftmark}
+\fancyfoot[L,R]{\thepage}
+\fancyfoot[R,L]{}
+
+
+
+\begin{document}
+\maketitle
+\newpage
+\tableofcontents{}
+\newpage
+
+\section{UC 2 - Play Game}
+Precondition: the game has been started.
+\newline
+Postcondition: the game is ended.
+
+\subsection{Main scenario}
+\begin{enumerate}
+	\item Starts when the gamer has started the game.
+	\item The system presents the gamer with the number of letters of the word which have not been input yet, the letters which have been input which were right as well as the letters which have been input which were wrong.
+	\item The gamer inputs a correct letter to the system.
+	\item The system show the letter in the word and the number of letters remaining.
+	\item The gamer repeats steps 3-4 until all letters of the word has been input.
+	\item The system presents the gamer with the choice of solving a new word or stop playing.
+	\item The gamer chooses to stop playing.
+	\item The system show the gamer the high-score and presents the gamer with the choice of going to the main menu or quitting the game entirely.
+	\item The gamer chooses to quit the game.
+	\item The game ends. 
+\end{enumerate}
+\subsection{Alternative scenarios}
+\begin{enumerate}[label=a*.]
+	\item At any time, the gamer indicates that he/she wants to quit the game.
+	\begin{enumerate}[label=a*.1.]
+		\item The system quits the game (see UC 3)
+	\end{enumerate}
+\end{enumerate}
+\begin{enumerate}[label=3.1.]
+	\item The gamer inputs an incorrect letter to the system
+	\begin{enumerate}[label=3.1 a.]
+		\item The gamer has input an incorrect letter less times than or equal to the allowed number of incorrect letters.
+		\begin{enumerate}[label=3.1 a.\arabic*]
+			\item The system indicates that the letter was incorrect and the number of incorrect answers allowed which remain.
+			\item Goto 2
+		\end{enumerate}
+	\end{enumerate}
+	\begin{enumerate}[label=3.1 b]
+		\item The gamer has input an incorrect letter more times than the allowed number of incorrect letters. 
+		
+		\begin{enumerate}[label=3.1 b.\arabic*]
+			\item The system indicates that the letter was incorrect and presents the gamer with the correct word as well as the  high-scores for the difficulty level and presents the gamer with the choice of restarting at the difficulty level, quitting or going to the main menu.
+			\begin{enumerate}[label=3.1 b.1]
+				\item The gamer chooses to quit.
+				\begin{itemize}
+					\item The game ends. 
+				\end{itemize}
+
+			\end{enumerate}
+			\begin{enumerate}[label=3.1 b.2.]
+				\item The gamer chooses to restart.
+				\begin{itemize}
+					\item The system presents a new word, goto 2.
+				\end{itemize}
+			\end{enumerate}
+			
+			\begin{enumerate}[label=3.1 b.3.]
+				\item The gamer chooses to go to the main menu.
+				\begin{itemize}
+					\item The system presents the main menu. 
+				\end{itemize}
+			\end{enumerate}
+				
+		\end{enumerate}
+	\end{enumerate}
+\end{enumerate}
+\begin{enumerate}[label=7.1.]
+	\item The gamer chooses to solve a new word. 
+	\begin{enumerate}[label=7.1.\arabic*]
+		\item Goto 2.
+	\end{enumerate}
+\end{enumerate}
+\begin{enumerate}[label=9.1.]
+	\item The gamer chooses to go to the main menu. 
+	\begin{enumerate}[label=9.1.\arabic*]
+		\item The system presents the main menu (see UC 1).
+	\end{enumerate}
+\end{enumerate}
+
+\section{UC 4 - Manage Words}
+Precondition: The admin is located in the "manage words" menu.
+\newline
+Postcondition: The admin has managed a word (added, adjusted, removed).
+\subsection{Main Scenario}
+\begin{enumerate}
+	\item Starts when the admin has chosen to open the manage words menu.
+	\item The system presents the admin with the choices of adding a word, removing a word, adjusting a word or quitting the menu.
+	\item The admin chooses to add a word.
+	\item The admin adds a word according to UC 5 (see UC 5).
+	\item The system presents the admin with the choice of adding another word or going back to the manage words menu.
+	\item The admin chooses to go back to the manage words menu.
+	\item Goto 2.
+\end{enumerate}
+\subsection{Alternative scenarios}
+\begin{enumerate}[label=3.1.]
+	\item The admin chooses to go to the main menu. 
+	\begin{enumerate}[label=3.1.\arabic*]
+		\item The system presents the main menu (see UC 1).
+	\end{enumerate}
+\end{enumerate}
+\begin{enumerate}[label=3.2.]
+	\item The admin chooses to remove a word. 
+	\begin{enumerate}[label=3.2.\arabic*]
+		\item The admin removes a word according to UC 6 (see UC 6)
+		\item The system presents the admin with the choice of removing another word or going back to the manage words menu.
+		\begin{enumerate}[label=3.2.2.a]
+			\item The admin chooses to go back to the manage words menu.
+			\begin{enumerate}[label=3.2.2.a.1]
+				\item Goto 2.
+			\end{enumerate}
+		\end{enumerate}
+		\begin{enumerate}[label=3.2.2.b]
+			\item The admin chooses to remove another word.
+			\begin{enumerate}[label=3.2.2.b.1]
+				\item Goto 3.2.
+			\end{enumerate}
+		\end{enumerate}
+	\end{enumerate}
+\end{enumerate}
+\begin{enumerate}[label=3.3.]
+	\item The admin chooses to adjust a word. 
+	\begin{enumerate}[label=3.3.\arabic*]
+		\item The admin adjusts a word according to UC 7 (see UC 7)
+		\item The system presents the admin with the choice of adjusting another word or going back to the manage words menu.
+		\begin{enumerate}[label=3.3.2.a]
+			\item The admin chooses to go back to the manage words menu.
+			\begin{enumerate}[label=3.3.2.a.1]
+				\item Goto 2.
+			\end{enumerate}
+		\end{enumerate}
+		\begin{enumerate}[label=3.3.2.b]
+			\item The admin chooses to adjust another word.
+			\begin{enumerate}[label=3.3.2.b.1]
+				\item Goto 3.3.
+			\end{enumerate}
+		\end{enumerate}
+	\end{enumerate}
+\end{enumerate}
+\begin{enumerate}[label=6.1.]
+	\item The admin chooses to add another word. 
+	\begin{enumerate}[label=6.1.\arabic*]
+		\item Goto 4.
+	\end{enumerate}
+\end{enumerate}
+\section{UC 5 - Add Word}
+Precondition: The admin has chosen to add a word.
+\newline
+Postcondition: The admin has added a word.
+\subsection{Main Scenario}
+\begin{enumerate}
+	\item Starts when the admin has chosen to add a word to the list of words.
+	\item The system prompts the admin to input the word.
+	\item The admin inputs the word.
+	\item The system prompts the admin to choose a difficulty associated with the word.
+	\item The admin chooses an allowed difficulty.
+	\item The system indicates that the word has been added.
+	\item The system presents the admin with the choice of adding another word or going back to the manage words menu (see UC 4, step 5).
+	\item The admin chooses to go back to the manage words menu.
+	\item The system presents the manage words menu (see UC 4).
+\end{enumerate}
+\subsection{Alternative Scenarios}
+\begin{enumerate}[label=a*.]
+	\item At any time, the admin indicates that he/she wants to quit the menu.
+	\begin{enumerate}[label=a*.1.]
+		\item The system quits the menu and presents the main menu.
+	\end{enumerate}
+\end{enumerate}
+\begin{enumerate}[label=5.1.]
+	\item The admin chooses an disallowed difficulty. 
+	\begin{enumerate}[label=5.1.\arabic*]
+		\item The system presents an error message.
+		\item Goto 4.
+	\end{enumerate}
+\end{enumerate}
+\begin{enumerate}[label=7.1.]
+	\item The admin chooses to add another word. 
+	\begin{enumerate}[label=7.1.\arabic*]
+		\item See UC 4, step 6.1.1.
+	\end{enumerate}
+\end{enumerate}
+\section{UC 6 - Remove Word}
+Precondition: The admin has chosen to remove a word.
+\newline
+Postcondition: The admin has removed a word.
+\subsection{Main Scenario}
+\begin{enumerate}
+	\item Starts when the admin has chosen to remove a word to the list of words.
+	\item The system displays the words on file and prompts the admin to choose the word to remove.
+	\item The admin chooses a word.
+	\item The system asks the admin if he/she wants to remove the word.
+	\item The admin answers yes.
+	\item The system indicates that the word has been removed.
+	\item The system presents the admin with the choice of removing another word or going back to the manage words menu (see UC 4, step 3.2.2.).
+	\item The admin chooses to go back to the manage words menu.
+	\item The system presents the manage words menu (see UC 4).
+\end{enumerate}
+\subsection{Alternative Scenarios}
+\begin{enumerate}[label=a*.]
+	\item At any time, the admin indicates that he/she wants to quit the menu.
+	\begin{enumerate}[label=a*.1.]
+		\item The system quits the menu and presents the main menu.
+	\end{enumerate}
+\end{enumerate}
+\begin{enumerate}[label=3.1.]
+	\item The admin chooses a word which does not exist. 
+	\begin{enumerate}[label=3.1.\arabic*]
+		\item The system presents an error message.
+		\item Goto 2.
+	\end{enumerate}
+\end{enumerate}
+\begin{enumerate}[label=4.1.]
+	\item The admin chooses no. 
+	\begin{enumerate}[label=4.1.\arabic*]
+		\item The system indicates that no word has been removed.
+		\item Goto 7.
+	\end{enumerate}
+\end{enumerate}
+\begin{enumerate}[label=7.1.]
+	\item The admin chooses to remove another word. 
+	\begin{enumerate}[label=7.1.\arabic*]
+		\item See UC 4, step 3.2.2.b
+	\end{enumerate}
+\end{enumerate}
+\section{UC 7 - Adjust Word}
+Precondition: The admin has chosen to adjust a word.
+\newline
+Postcondition: The admin has adjusted a word.
+\subsection{Main Scenario}
+\begin{enumerate}
+	\item Starts when the admin has chosen to adjust a word in the list of words.
+	\item The system displays the words on file and prompts the admin to choose the word to adjust.
+	\item The admin chooses a word.
+	\item The system asks the admin to input the adjusted word.
+	\item The admin inputs the adjusted word.
+	\item The system asks the admin if he/she wants to adjust the word accordingly.
+	\item The admin answers yes.
+	\item The system indicates that the word has been adjusted.
+	\item The system presents the admin with the choice of adjusting another word or going back to the manage words menu (see UC 4, step 3.3.2.).
+	\item The admin chooses to go back to the manage words menu.
+	\item The system presents the manage words menu (see UC 4).
+\end{enumerate}
+\subsection{Alternative Scenarios}
+\begin{enumerate}[label=a*.]
+	\item At any time, the admin indicates that he/she wants to quit the menu.
+	\begin{enumerate}[label=a*.1.]
+		\item The system quits the menu and presents the main menu.
+	\end{enumerate}
+\end{enumerate}
+\begin{enumerate}[label=3.1.]
+	\item The admin chooses a word which does not exist. 
+	\begin{enumerate}[label=3.1.\arabic*]
+		\item The system presents an error message.
+		\item Goto 2.
+	\end{enumerate}
+\end{enumerate}
+
+\begin{enumerate}[label=6.1.]
+	\item The admin chooses no. 
+	\begin{enumerate}[label=6.1.\arabic*]
+		\item The system indicates that the word has not been adjusted.
+		\item Goto 9.
+	\end{enumerate}
+\end{enumerate}
+\begin{enumerate}[label=10.1.]
+	\item The admin chooses to adjust another word. 
+	\begin{enumerate}[label=10.1.\arabic*]
+		\item See UC 4, step 3.3.2.b
+	\end{enumerate}
+\end{enumerate}
+
+\end{document}          
