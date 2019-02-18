@@ -61,6 +61,17 @@ class WordList {
   }
 
   /**
+   * A function which returns the number of words left in the list.
+   *
+   * @return {number} the number of words left in the list
+   * @memberof WordList
+   */
+
+  getWordsLeft () {
+    return this._list.length
+  }
+
+  /**
    * A function which returns a word from the current list, meanwhile removing
    * that word from the list.
    *

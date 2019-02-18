@@ -29,29 +29,26 @@ class Game {
   constructor () {
     this._userInput = ''
     this._words = []
-    this._wordList = new WordList()
+    this._wordList = WordList
     this._tries = 5
   }
 
-  async startGame () {
+  async goMainMenu () {
+    this._wordList = new WordList()
     await this.displayMainMenu().then(async choice => {
       switch (choice.choice) {
         case 'Play Game!':
           this.playAWord()
           break
         case 'Quit game.':
-          let ans = await this.terminateGame()
-          if (ans === 'y') {
-            process.exit()
-          } else {
-            clear()
-            this.startGame()
-          }
+          await this.terminateGame()
+          clear()
+          this.goMainMenu()
           break
         default:
           clear()
           console.log('Not implemented yet')
-          this.startGame()
+          this.goMainMenu()
           break
       }
     })
@@ -79,16 +76,19 @@ class Game {
   }
 
   async playAWord () {
+    this._tries = 5
     clear()
     let word = this._wordList.getWordFromList()
     while (word.getNoOfLetters() > 0 && this._tries > 0) {
-      console.log(`This word still contains ${word.getNoOfLetters()} unsolved letters.`)
+      console.log('\n---------------------------')
+      console.log(`This word still contains ${chalk.blue(word.getNoOfLetters())} unsolved letters.`)
       if (this._tries > 1) {
-        console.log(`You have ${this._tries} tries left.`)
+        console.log(`You have ${chalk.red(this._tries)} tries left.`)
       } else {
-        console.log(`You have ${this._tries} try left.`)
+        console.log(`You have ${chalk.red(this._tries)} try left.`)
       }
       console.log('Remember, you can always quit by writing "q-t"')
+      console.log('---------------------------')
       await this.getUserInput('Please provide a letter')
         .then(async answer => {
           if (answer.answer === 'q-t') {
@@ -96,28 +96,39 @@ class Game {
           } else if (word.hasLetter(answer.answer)) {
             console.log('Correct!')
             if (word.getNoOfLetters() === 0) {
-              console.log(`Yes, the word was "${word.getWord()}"!`)
+              console.log(`Yes, the word was "${chalk.green(word.getWord())}"!`)
               console.log('You won!')
-              await this.getUserInput('Do you want to solve a new word [y/n]?')
-                .then(answer => {
-                  if (answer.answer === 'y') {
-                    this.playAWord()
-                  } else {
-                    console.log('Ok, quitting...')
-                    process.exit()
-                  }
-                })
-              return true
+              await this.solveNewWord()
             }
           } else {
             this._tries--
             console.log('Unfortunately wrong :(')
             if (this._tries === 0) {
               console.log('You lost')
-              return false
+              console.log(`The word was ${chalk.green(word.getWord())}.`)
+              await this.solveNewWord()
             }
           }
         })
+    }
+  }
+
+  /**
+   * A function which querys the user if she/he wants to solve a new word
+   * and then responds accordingly.
+   *
+   * @memberof Game
+   */
+  async solveNewWord () {
+    if (this._wordList.getWordsLeft() > 0) {
+      await this.getUserInput('Do you want to solve a new word [y/n]?')
+        .then(answer => {
+          if (answer.answer === 'y') {
+            this.playAWord()
+          }
+        })
+    } else {
+      this.goMainMenu()
     }
   }
 

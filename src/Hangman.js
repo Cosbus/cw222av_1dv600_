@@ -27,7 +27,7 @@ console.log('Your scores will be saved in the file:', highscores.getFileName())
 console.log('The current path of the application is:', fileHandler.getCurrentPath())
 console.log('But all persistent data will be stored in the folder: ', fileHandler.getDataPath())
 const run = async () => {
-  await game.startGame()
+  await game.goMainMenu()
 }
 
 run()
