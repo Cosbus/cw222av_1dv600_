@@ -27,20 +27,7 @@ console.log('Your scores will be saved in the file:', highscores.getFileName())
 console.log('The current path of the application is:', fileHandler.getCurrentPath())
 console.log('But all persistent data will be stored in the folder: ', fileHandler.getDataPath())
 const run = async () => {
-  await game.displayMainMenu().then(choice => {
-    console.log(choice.choice)
-    switch (choice.choice) {
-      case 'Play Game!':
-        game.playAWord()
-        break
-      case 'Quit game.':
-        console.log('Very well...')
-        break
-      default:
-        console.log('Not implemented yet, quitting...')
-        break
-    }
-  })
+  await game.startGame()
 }
 
 run()

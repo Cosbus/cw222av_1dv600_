@@ -33,6 +33,30 @@ class Game {
     this._tries = 5
   }
 
+  async startGame () {
+    await this.displayMainMenu().then(async choice => {
+      switch (choice.choice) {
+        case 'Play Game!':
+          this.playAWord()
+          break
+        case 'Quit game.':
+          let ans = await this.terminateGame()
+          if (ans === 'y') {
+            process.exit()
+          } else {
+            clear()
+            this.startGame()
+          }
+          break
+        default:
+          clear()
+          console.log('Not implemented yet')
+          this.startGame()
+          break
+      }
+    })
+  }
+
   /**
    * A function which displays the main menu of the game and returns a promise of the user choice.
    *
@@ -40,7 +64,6 @@ class Game {
    * @memberof Game
    */
   async displayMainMenu () {
-    clear()
     console.log(chalk.yellow(figlet.textSync('The Marvelous', { horizontalLayout: 'full' })))
     console.log(chalk.yellow(figlet.textSync('Hanging Man', { horizontalLayout: 'full' })))
     console.log(chalk.blue(figlet.textSync('Main Menu', { horizontalLayout: 'full' })))
@@ -65,13 +88,25 @@ class Game {
       } else {
         console.log(`You have ${this._tries} try left.`)
       }
+      console.log('Remember, you can always quit by writing "q-t"')
       await this.getUserInput('Please provide a letter')
-        .then(answer => {
-          if (word.hasLetter(answer.answer)) {
+        .then(async answer => {
+          if (answer.answer === 'q-t') {
+            await this.terminateGame()
+          } else if (word.hasLetter(answer.answer)) {
             console.log('Correct!')
             if (word.getNoOfLetters() === 0) {
               console.log(`Yes, the word was "${word.getWord()}"!`)
               console.log('You won!')
+              await this.getUserInput('Do you want to solve a new word [y/n]?')
+                .then(answer => {
+                  if (answer.answer === 'y') {
+                    this.playAWord()
+                  } else {
+                    console.log('Ok, quitting...')
+                    process.exit()
+                  }
+                })
               return true
             }
           } else {
@@ -84,6 +119,22 @@ class Game {
           }
         })
     }
+  }
+
+  /**
+   * A function which querys the user if the game really is to be terminated
+   * and then responds accordingly.
+   *
+   * @memberof Game
+   */
+  async terminateGame () {
+    await this.getUserInput('Are you sure you want to quit [y/n]?').then(answer => {
+      if (answer.answer === 'y') {
+        process.exit()
+      } else {
+        console.log('Ok, continuing.')
+      }
+    })
   }
 
   /**
@@ -101,7 +152,7 @@ class Game {
         name: 'answer',
         message: question,
         validate: function (value) {
-          if (value.length === 1) { return true } else { return 'Please provide one letter.' }
+          if ((value.length === 1) || (value === 'q-t')) { return true } else { return 'Please provide one letter.' }
         }
       }]
     return inquirer.prompt(questions)
