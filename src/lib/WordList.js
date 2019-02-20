@@ -8,6 +8,7 @@
  */
 
 const Word = require('./Word.js')
+const FileHandler = require('./FileHandler.js')
 
 /**
  * A class which handles a list of words
@@ -18,13 +19,14 @@ class WordList {
   /**
    * Creates an instance of WordList.
    *
+   * @param {string} [difficulty = easy] - the difficulty level
    * @memberof WordList
    * @constructor
    */
-  constructor () {
+  constructor (difficulty = 'easy') {
     this._list = []
-    this._importWords()
-    this._shuffleList()
+    this._difficulty = difficulty
+    this._fileHandler = new FileHandler()
   }
 
   /**
@@ -32,10 +34,14 @@ class WordList {
    *
    * @memberof WordList
    */
-  _importWords () {
-    this._list.push(new Word('test', 'moderate'))
-    this._list.push(new Word('pest', 'moderate'))
-    this._list.push(new Word('fest', 'moderate'))
+  async importWords () {
+    let words = await this._fileHandler.loadWordList(this._difficulty).then(wordlist => {
+      return wordlist
+    })
+    words.forEach(word => {
+      this._list.push(new Word(word, this._difficulty))
+    })
+    this._shuffleList()
   }
 
   /**

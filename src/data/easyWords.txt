@@ -1,0 +1,1 @@
+police, car, horse, dog, bicycle, door, dream

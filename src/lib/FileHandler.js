@@ -6,7 +6,7 @@
  * @version 1.0.0
  */
 
-const fse = require('fse')
+const fse = require('fs-extra')
 
 /**
  * A class which handles the files within the application.
@@ -23,6 +23,44 @@ class FileHandler {
   constructor () {
     this._currentPath = __dirname
     this._dataPath = './data'
+    this._hardWordsPath = './src/data/hardWords.txt'
+    this._easyWordsPath = './src/data/easyWords.txt'
+    this._moderateWordsPath = './src/data/moderateWords.txt'
+  }
+
+  /**
+   * A function which given a difficulty returns an array of words.
+   *
+   * @param {string} difficulty - the difficulty of the words to return
+   * @returns {[promise]} an array containing a promise of strings of words.
+   * @memberof FileHandler
+   */
+  async loadWordList (difficulty) {
+  /**
+   * A helper function which loads a list of words given a specific path.
+   *
+   * @param {string} path - the path of the file of the words to return
+   * @returns {[promise]} an array containing a promise of strings of words.
+   * @memberof loadWordList
+   */
+    const rf = async function (path) {
+      return fse.readFile(path, 'utf8')
+        .then(words => {
+          return words.split(', ')
+        })
+    }
+
+    switch (difficulty.toLowerCase()) {
+      case 'easy':
+        return rf(this._easyWordsPath)
+      case 'moderate':
+        return rf(this._moderateWordsPath)
+      case 'hard':
+        return rf(this._hardWordsPath)
+      default:
+        console.log('Something went wrong')
+        break
+    }
   }
 
   /**

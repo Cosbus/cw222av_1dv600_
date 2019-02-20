@@ -34,11 +34,17 @@ class Game {
   }
 
   async goMainMenu () {
-    this._wordList = new WordList()
     await this.displayMainMenu().then(async choice => {
       switch (choice.choice) {
         case 'Play Game!':
-          this.playAWord()
+          await this.chooseDifficulty()
+            .then(ans => {
+              return this.configGame(ans.difficulty)
+            })
+            .then(() => {
+              return this.playAWord()
+            })
+
           break
         case 'Quit game.':
           await this.terminateGame()
@@ -75,10 +81,57 @@ class Game {
     return inquirer.prompt(questions)
   }
 
-  async playAWord () {
-    this._tries = 5
+  /**
+   * A function which prompts the user for the difficulty level.
+   *
+   * @return {Promise} a promise containing the chosen difficulty
+   * @memberof Game
+   */
+  async chooseDifficulty () {
+    console.log('Alright, lets play! But first choose difficulty level.')
+    const questions = [
+      {
+        type: 'list',
+        name: 'difficulty',
+        message: 'Make a choice:',
+        choices: ['Easy', 'Moderate', 'Hard']
+      }]
+    return inquirer.prompt(questions)
+  }
+
+  /**
+   * A function which configures the game for the next word to solve.
+   *
+   * @param {string} difficulty - the difficulty of the word to play.
+   * @return {WordList} a wordlist containing the words of the given difficulty
+   * @memberof Game
+   */
+  async configGame (difficulty) {
     clear()
+    switch (difficulty) {
+      case 'easy':
+        this._tries = 7
+        break
+      case 'moderate':
+        this._tries = 5
+        break
+      case 'hard':
+        this._tries = 3
+        break
+    }
+    this._wordList = new WordList(difficulty)
+    await this._wordList.importWords()
+  }
+
+  /**
+   * A function which lets the user solve a word.
+   *
+   * @param {string} difficulty - the difficulty of the word to play.
+   * @memberof Game
+   */
+  async playAWord () {
     let word = this._wordList.getWordFromList()
+    console.log(word)
     while (word.getNoOfLetters() > 0 && this._tries > 0) {
       console.log('\n---------------------------')
       console.log(`This word still contains ${chalk.blue(word.getNoOfLetters())} unsolved letters.`)
