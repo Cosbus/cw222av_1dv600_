@@ -30,7 +30,6 @@ class Game {
     this._userInput = ''
     this._words = []
     this._wordList = WordList
-    this._tries = 5
   }
 
   async goMainMenu () {
@@ -39,12 +38,8 @@ class Game {
         case 'Play Game!':
           await this.chooseDifficulty()
             .then(ans => {
-              return this.configGame(ans.difficulty)
+              return this.playAWord(ans.difficulty)
             })
-            .then(() => {
-              return this.playAWord()
-            })
-
           break
         case 'Quit game.':
           await this.terminateGame()
@@ -108,7 +103,7 @@ class Game {
    */
   async configGame (difficulty) {
     clear()
-    switch (difficulty) {
+    switch (difficulty.toLowerCase()) {
       case 'easy':
         this._tries = 7
         break
@@ -129,41 +124,43 @@ class Game {
    * @param {string} difficulty - the difficulty of the word to play.
    * @memberof Game
    */
-  async playAWord () {
-    let word = this._wordList.getWordFromList()
-    console.log(word)
-    while (word.getNoOfLetters() > 0 && this._tries > 0) {
-      console.log('\n---------------------------')
-      console.log(`This word still contains ${chalk.blue(word.getNoOfLetters())} unsolved letters.`)
-      if (this._tries > 1) {
-        console.log(`You have ${chalk.red(this._tries)} tries left.`)
-      } else {
-        console.log(`You have ${chalk.red(this._tries)} try left.`)
+  async playAWord (difficulty) {
+    await this.configGame(difficulty).then(async () => {
+      let word = this._wordList.getWordFromList()
+      console.log(word)
+      while (word.getNoOfLetters() > 0 && this._tries > 0) {
+        console.log('\n---------------------------')
+        console.log(`This word still contains ${chalk.blue(word.getNoOfLetters())} unsolved letters.`)
+        if (this._tries > 1) {
+          console.log(`You have ${chalk.red(this._tries)} tries left.`)
+        } else {
+          console.log(`You have ${chalk.red(this._tries)} try left.`)
+        }
+        console.log('Remember, you can always quit by writing "q-t"')
+        console.log('---------------------------')
+        await this.getUserInput('Please provide a letter')
+          .then(async answer => {
+            if (answer.answer === 'q-t') {
+              await this.terminateGame()
+            } else if (word.hasLetter(answer.answer)) {
+              console.log('Correct!')
+              if (word.getNoOfLetters() === 0) {
+                console.log(`Yes, the word was "${chalk.green(word.getWord())}"!`)
+                console.log('You won!')
+                await this.solveNewWord()
+              }
+            } else {
+              this._tries--
+              console.log('Unfortunately wrong :(')
+              if (this._tries === 0) {
+                console.log('You lost')
+                console.log(`The word was ${chalk.green(word.getWord())}.`)
+                await this.solveNewWord()
+              }
+            }
+          })
       }
-      console.log('Remember, you can always quit by writing "q-t"')
-      console.log('---------------------------')
-      await this.getUserInput('Please provide a letter')
-        .then(async answer => {
-          if (answer.answer === 'q-t') {
-            await this.terminateGame()
-          } else if (word.hasLetter(answer.answer)) {
-            console.log('Correct!')
-            if (word.getNoOfLetters() === 0) {
-              console.log(`Yes, the word was "${chalk.green(word.getWord())}"!`)
-              console.log('You won!')
-              await this.solveNewWord()
-            }
-          } else {
-            this._tries--
-            console.log('Unfortunately wrong :(')
-            if (this._tries === 0) {
-              console.log('You lost')
-              console.log(`The word was ${chalk.green(word.getWord())}.`)
-              await this.solveNewWord()
-            }
-          }
-        })
-    }
+    })
   }
 
   /**
@@ -178,6 +175,13 @@ class Game {
         .then(answer => {
           if (answer.answer === 'y') {
             this.playAWord()
+          } else if (answer.answer === 'q-t') {
+            process.exit(0)
+          } else if (answer.answer === 'n') {
+            this.goMainMenu()
+          } else {
+            console.log('[y]es or [n]o')
+            this.solveNewWord()
           }
         })
     } else {
