@@ -7,6 +7,7 @@
  */
 
 const fse = require('fs-extra')
+const path = require('path')
 
 /**
  * A class which handles the files within the application.
@@ -23,9 +24,9 @@ class FileHandler {
   constructor () {
     this._currentPath = __dirname
     this._dataPath = './data'
-    this._hardWordsPath = './src/data/hardWords.txt'
-    this._easyWordsPath = './src/data/easyWords.txt'
-    this._moderateWordsPath = './src/data/moderateWords.txt'
+    this._hardWordsPath = path.join(path.join(this._currentPath, this._dataPath), 'hardWords.txt')
+    this._easyWordsPath = path.join(path.join(this._currentPath, this._dataPath), 'easyWords.txt')
+    this._moderateWordsPath = path.join(path.join(this._currentPath, this._dataPath), 'moderateWords.txt')
   }
 
   /**

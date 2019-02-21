@@ -139,13 +139,10 @@ class Game {
   /**
    * A function which lets the user solve a word.
    *
-   * @param {string} difficulty - the difficulty of the word to play.
    * @memberof Game
    */
   async playAWord () {
-    console.log(this._wordList)
     let word = this._wordList.getWordFromList()
-    console.log(word)
     while (word.getNoOfLetters() > 0 && this._tries > 0) {
       console.log('\n---------------------------')
       console.log(`This word still contains ${chalk.blue(word.getNoOfLetters())} unsolved letters.`)

@@ -41,7 +41,14 @@
 		\hline
 		14.02.2019 & Version 2.0 & Detail planning Iteration 2 & Claes Weyde \\
 		\hline
-		14.02.2019 & Version 2.1 & Updated time log after UML work & Claes Weyde \\[1ex]
+		14.02.2019 & Version 2.1 & Updated time log after UML work & Claes Weyde \\
+		\hline
+		21.02.2019 & Version 2.2 & Updated time log after implementation work & Claes Weyde \\
+		\hline
+		21.02.2019 & Version 2.3 & Updated time log for class diagram & Claes Weyde \\
+		\hline
+		21.02.2019 & Version 2.4 & Reflection writing & Claes Weyde \\
+		[1ex]
 		\hline
 		
 	\end{tabular}
@@ -193,6 +200,8 @@ The end user is assumed to have a working knowledge of computers and using the c
 \subsection{Reflection}
 When preparing the project plan it soon becomes obvious that it is \emph{hard} to plan a project at a detailed level. The work may initially feel a bit wasted, especially since it requires quite a large amount of time. However, as the project plan has taken shape I feel that it will be quite valuable to revert back to in order to see how the application is measuring up to the plan. Furthermore, the more detailed plans with time scheduling is useful when time is a high-valued and sparse commodity. It will also be interesting to update the document as the work progresses and from the document evaluate my ability to estimate and plan. For me personally it is also very good to learn the skill of planning before performing the work, since I have a habit of jumping right into the coding.
 \newpage
+\section{How to play}
+In order to play node must be installed on the platform. Thereafter the player need to open a bash of choice, move to the folder containing the source-code and type "node Hangman.js". Voila!
 \section{Iterations}
 \subsection{Iteration 1}
 
@@ -282,11 +291,11 @@ A first estimate was performed during iteration 1. Thereafter a re-estimation wa
 		\hline
 		Task & Estimate [hrs] & Re-estimate [hrs] & Actual time [hrs] \\ [0.5ex] 
 		\hline\hline
-		Study book & 4 & 5 & --\\
+		Study book & 4 & 5 & 3\\
 		\hline
-		Lectures & 6 & 7 &--\\
+		Lectures & 6 & 7 & 4\\
 		\hline 
-		Document update & 1 & 1 &--\\
+		Document update & 1 & 1 & 2 \\
 		\hline 
 		Use case model & -- & 3 & 2 \\
 		\hline
@@ -296,14 +305,19 @@ A first estimate was performed during iteration 1. Thereafter a re-estimation wa
 		\hline
 		UML Total & 5 & 7 & 8 \\
 		\hline
-		Coding & 5 & 10 &-- \\ 
+		Coding & 5 & 10 & 8 \\ 
 		\hline
-		Class diagram & -- & 1.5 & --\\
+		Class diagram & -- & 1.5 & 1\\
 		\hline
-		Total time & 21 & 31.5 &-- \\ [1ex]
+		Total time & 21 & 31.5 & 34\\ [1ex]
 		\hline 
 	\end{tabular}
 \end{center}
+\subsubsection{Reflection}
+Unfortunately I did not have enough time to implement all my requirements, e.g. the word management and the high-scores will be implemented in the coming iterations if time allows it. Some time had to be taken from the theory study to instead implement code and work on the UML. Thus, in the time log it would appear that I needed less time for studying and lectures than anticipated. In reality I would probably need more time but I had to prioritize the practical work. Even though I did not spend the planned amount of time on the theory it can be seen that my re-estimation was on the low side. Thus, in the next iteration I will need to allocate even more time for the work at hand.
+\newline
+\newline
+During my work with the class diagram I realized that my game class has to many responsibilities. I plan on refactoring the code and break out some functionality to other entities in the next iteration. The main focus in the next iteration for functionality implementation is to implement a graphical view of the word being solved (showing the placement of the letters in the word). If time permits I would also like to add the word management.
 \subsection{Iteration 3}
 In this iteration the implemented features of the application will be validated through testing. Furthermore, some functionality may be implemented here as well.
 \subsubsection{To-do}
