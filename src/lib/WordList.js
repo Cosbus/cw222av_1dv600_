@@ -54,12 +54,9 @@ class WordList {
     let t
     let i
 
-    // While there remain elements to shuffle…
     while (m) {
-      // Pick a remaining element…
       i = Math.floor(Math.random() * m--)
 
-      // And swap it with the current element.
       t = this._list[m]
       this._list[m] = this._list[i]
       this._list[i] = t
