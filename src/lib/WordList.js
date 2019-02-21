@@ -46,6 +46,7 @@ class WordList {
 
   /**
    * A function which shuffles the words in the list using the Fisher-Yates algorithm.
+   * Code from Mike Bostock (https://bost.ocks.org/mike/shuffle/)
    *
    * @memberof WordList
    */
