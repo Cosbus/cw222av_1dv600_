@@ -10,9 +10,9 @@ const figlet = require('figlet')
 const clear = require('clear')
 const chalk = require('chalk')
 const inquirer = require('inquirer')
-const Word = require('./Word.js')
-
 const WordList = require('./WordList.js')
+const funcs = require('./Funcs')
+const WordManager = require('./WordManager.js')
 
 /**
  * A class which handles the Game.
@@ -30,6 +30,7 @@ class Game {
     this._userInput = ''
     this._words = []
     this._wordList = WordList
+    this._wordManager = new WordManager()
 
     this.displayGreeting()
   }
@@ -55,11 +56,14 @@ class Game {
         case 'Play Game!':
           await this.chooseDifficulty()
             .then(ans => {
-              return this.configGame(ans.difficulty)
+              return this.configGame(ans.choice)
             })
             .then(async () => {
               return this.playAWord()
             })
+          break
+        case 'Manage words.':
+          await this._wordManager.start()
           break
         case 'Quit game.':
           await this.terminateGame()
@@ -84,14 +88,7 @@ class Game {
   async displayMainMenu () {
     console.log(chalk.blue(figlet.textSync('Main Menu', { horizontalLayout: 'full' })))
 
-    const questions = [
-      {
-        type: 'list',
-        name: 'choice',
-        message: 'Make a choice:',
-        choices: ['Play Game!', 'Manage words.', 'See high-scores.', 'Quit game.']
-      }]
-    return inquirer.prompt(questions)
+    return funcs.getAnswerToPrompt(['Play Game!', 'Manage words.', 'See high-scores.', 'Quit game.'])
   }
 
   /**
@@ -102,14 +99,18 @@ class Game {
    */
   async chooseDifficulty () {
     console.log('Alright, lets play! But first choose difficulty level.')
-    const questions = [
+    return funcs.getDifficulty()
+
+    // return funcs.getAnswerToPrompt(['Easy', 'Moderate', 'Hard'])
+
+    /*   const questions = [
       {
         type: 'list',
         name: 'difficulty',
         message: 'Make a choice:',
         choices: ['Easy', 'Moderate', 'Hard']
       }]
-    return inquirer.prompt(questions)
+    return inquirer.prompt(questions) */
   }
 
   /**
@@ -153,7 +154,7 @@ class Game {
       }
       console.log('Remember, you can always quit by writing "q-t"')
       console.log('---------------------------')
-      await this.getUserInput('Please provide a letter')
+      await funcs.getUserInput('Please provide a letter')
         .then(async answer => {
           if (answer.answer === 'q-t') {
             await this.terminateGame()
@@ -185,7 +186,7 @@ class Game {
    */
   async solveNewWord () {
     if (this._wordList.getWordsLeft() > 0) {
-      await this.getUserInput('Do you want to solve a [n]ew word, [q]uit or go to [m]ain menu?')
+      await funcs.getUserInput('Do you want to solve a [n]ew word, [q]uit or go to [m]ain menu?')
         .then(async answer => {
           if (answer.answer === 'n') {
             this.playAWord()
@@ -211,7 +212,7 @@ class Game {
    * @memberof Game
    */
   async terminateGame (caller = 0) {
-    await this.getUserInput('Are you sure you want to quit [y/n]?').then(async answer => {
+    await funcs.getUserInput('Are you sure you want to quit [y/n]?').then(async answer => {
       if (answer.answer === 'y') {
         process.exit()
       } else if (answer.answer === 'n') {
@@ -228,27 +229,6 @@ class Game {
         await this.terminateGame()
       }
     })
-  }
-
-  /**
-   * A function which given a question retrieves an input from the User.
-   *
-   * @param {string} question - the question to ask the user.
-   * @return {[Promise]} a promise containing the user answer.
-   *
-   * @memberof Game
-   */
-  async getUserInput (question) {
-    const questions = [
-      {
-        type: 'input',
-        name: 'answer',
-        message: question,
-        validate: function (value) {
-          if ((value.length === 1) || (value === 'q-t')) { return true } else { return 'Please provide one letter.' }
-        }
-      }]
-    return inquirer.prompt(questions)
   }
 }
 
