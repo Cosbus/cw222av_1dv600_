@@ -1,0 +1,154 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+% Title Page
+\title{Software Development Project - 1DV600 - Test documentation}
+\author{Claes Weyde \\ 
+	e-mail: \href{mailto:cw222av@student.lnu.se}{cw222av@student.lnu.se} \\
+	github: \href{https://github.com/Cosbus/cw222av_1dv600_}{https://github.com/Cosbus/\texttt{cw222av\_1dv600\_}}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{The Marvelous Hanging Man - Test documentation}
+\fancyhead[L]{Claes Weyde}
+\fancyfoot[C,C]{\leftmark}
+\fancyfoot[L]{\thepage}
+\fancyfoot[R]{Version 1.0}
+
+
+
+\begin{document}
+\maketitle
+\newpage
+\tableofcontents{}
+\newpage
+
+\section{Test Plan}
+
+\subsection{Objectives}
+\subsection{To-do}
+\begin{itemize}
+	\item Plan work
+	\begin{itemize}
+		\item Is required functionality missing?
+		\item Should new functionality be implemented?
+		\item Prioritize what needs to be done.
+	\end{itemize}
+	\item Update project document.
+	\item Possible: Implement new features.
+	\begin{itemize}
+		\item Prepare UML for new features.
+		\item Implement new features.
+		\item Test new features as well as whole game.
+	\end{itemize}
+	\item Complete and hand in project.
+\end{itemize}
+\subsection{Time estimates and Time log}
+\begin{center}
+	\begin{tabular}{|c|c|c|} 
+		\hline
+		Task & Estimate [hrs] & Actual time \\ [0.5ex] 
+		\hline\hline
+		Plan work & 2 & -- \\ 
+		\hline
+		Document update & 1 & --\\
+		\hline 
+		Possible implementation & 10-15 & -- \\ 
+		\hline
+		Finish up and hand in & 2 & --\\ 
+		\hline 
+		Total time & 20 & --\\ [1ex]
+		\hline
+		
+	\end{tabular}
+\end{center}
+\newpage
+\section{Manual test cases}
+\subsection{Manual tests of Play Game main scenario}
+\subsubsection{TC 2.2 - Successfully providing a correct letter}
+\begin{itemize}
+	\item Name: Successfully providing a correct letter.
+	\item Test case ref: TC 2.2
+	\item Use case ref: UC 2.3
+	\item Description: The test case tests how the system responds when the user provides a letter which is correct, and the word is not completely solved.
+\end{itemize}
+\emph{Input}
+\begin{enumerate}
+	\item \underline{Precondition:} The user has started the game.
+	\item Test case TC 2.1. choose "play game" from main menu.
+	\item Input a correct letter.
+	\item Press enter.
+\end{enumerate}
+\emph{Output}
+\begin{itemize}
+	\item The system prints "Correct!" on the screen.
+	\item The system prints the number of letters remaining on the screen.
+	\item The system prints the number of tries remaining on the screen.
+	\item The system prompts the user to enter a new letter by printing "Please provide a letter:" on the screen.
+\end{itemize}
+\emph{Comments}
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\subsubsection{TC 2.3 - Providing an incorrect letter}
+\begin{itemize}
+	\item Name: Providing an incorrect letter.
+	\item Test case ref: TC 2.3
+	\item Use case ref: UC 2.3.1
+	\item Description: The test case tests how the system responds when the user provides a letter which is incorrect, and the user has more tries.
+\end{itemize}
+\emph{Input}
+\begin{enumerate}
+	\item \underline{Precondition:} The user has started the game.
+	\item Test case TC 2.1. choose "play game" from main menu.
+	\item Input an incorrect letter.
+	\item Press enter.
+\end{enumerate}
+\emph{Output}
+\begin{itemize}
+	\item The system prints "Unfortunately wrong." on the screen.
+	\item The system prints the number of letters remaining on the screen.
+	\item The system prints the number of tries remaining on the screen.
+	\item The system prompts the user to enter a new letter by printing "Please provide a letter:" on the screen.
+\end{itemize}
+\emph{Comments}
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\subsubsection{TC 2.6 - Returning from play to main menu}
+\begin{itemize}
+	\item Name: Returning from play to main menu.
+	\item Test case ref: TC 2.6
+	\item Use case ref: UC 2.7
+	\item Description: The test case tests how the system responds when the user has finished a word (either by finding the word or having exhausted his/hers amount of tries) and chooses to return to the main menu.
+\end{itemize}
+\emph{Input}
+\begin{enumerate}
+	\item \underline{Precondition:} The user has finished a word and the system has provided the user with the choice of returning to main menu, playing a new word or quitting the game altogether.
+	\item Finish a word.
+	\item Input "m" to return to main menu.
+	\item Press enter.
+\end{enumerate}
+\emph{Output}
+\begin{itemize}
+	\item The system shows the main menu on the screen.
+\end{itemize}
+\emph{Comments}
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\end{document}          
