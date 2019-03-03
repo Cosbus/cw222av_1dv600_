@@ -65,6 +65,47 @@ class FileHandler {
   }
 
   /**
+   * A function which updates a word from a given list.
+   *
+   * @param {string} difficulty - the difficulty of the word to update (to find the file)
+   * @param {string} word - the word to update
+   * @param {string} updateWord - the word to update to
+   * @memberof FileHandler
+   */
+  async updateWordfromList (difficulty, word, updatedWord) {
+    /**
+     * A helper function which updates a word given a specific path and the word.
+     *
+     * @param {string} path - the path of the file to update the word from
+     * @param {string} contentToUpdate - the word to update
+     * @param {string} updateContent - the word to update to
+     * @memberof updateWordfromList
+     */
+    const uw = async function (path, contentToUpdate, updateContent) {
+      let words = await fse.readFile(path, 'utf8')
+      let str = words.replace(contentToUpdate, updateContent)
+      await fse.writeFile(path, str, function (err) {
+        if (err) throw err
+      })
+    }
+
+    switch (difficulty.toLowerCase()) {
+      case 'easy':
+        uw(this._easyWordsPath, word, updatedWord)
+        break
+      case 'moderate':
+        uw(this._moderateWordsPath, updatedWord)
+        break
+      case 'hard':
+        uw(this._hardWordsPath, updatedWord)
+        break
+      default:
+        console.log('Something went wrong')
+        break
+    }
+  }
+
+  /**
    * A function which removes a word from a given list.
    *
    * @param {string} difficulty - the difficulty of the word to remove (to find the file)
@@ -82,9 +123,8 @@ class FileHandler {
     const rw = async function (path, content) {
       let words = await fse.readFile(path, 'utf8')
       let str = words.replace(', ' + content, '')
-      fse.writeFile(path, str, function (err) {
+      await fse.writeFile(path, str, function (err) {
         if (err) throw err
-        console.log(`${content} successfully removed!`)
       })
     }
 
@@ -124,7 +164,6 @@ class FileHandler {
       console.log(content)
       await fse.appendFile(path, ', ' + content, function (err) {
         if (err) throw err
-        console.log('Succesfully saved')
       })
     }
 

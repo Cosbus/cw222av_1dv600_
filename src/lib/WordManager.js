@@ -39,33 +39,74 @@ class WordManager {
    */
   async start () {
     this.displayManageMenu().then(async choice => {
+      let again
       switch (choice.choice) {
         case 'Add word':
-          let word = await funcs.getUserWordInput('Input a word')
-          let difficultyAdd = await funcs.getDifficulty()
-          await this._FileHandler.saveWordtoList(difficultyAdd.choice, word.answer)
-          clear()
+          again = true
+          while (again) {
+            try {
+              let word = await funcs.getUserWordInput('Input a word:')
+              let difficultyAdd = await funcs.getDifficulty()
+              await this._FileHandler.saveWordtoList(difficultyAdd.choice, word.answer)
+              console.log(chalk.green('Successfully saved'))
+              if ((await funcs.getUserInput('Add another word? [y/n]')).answer === 'n') { again = false }
+            } catch (error) {
+              console.log(error)
+            }
+          }
           this.start()
           break
         case 'Delete word':
-          console.log('Remove word. Which difficulty are you interested in?')
-          let difficultyRem = (await funcs.getDifficulty()).choice
-          let list = await this._FileHandler.loadWordList(difficultyRem)
-          console.log('Choose a word to delete.')
-          let wordToRemove = (await funcs.getAnswerToPrompt(list)).choice
-          let ans = await funcs.getUserInput(`Are you sure you want to remove ${wordToRemove} quit [y/n]?`)
-          if (ans.answer === 'y') {
-            await this._FileHandler.removeWordfromList(difficultyRem, wordToRemove)
-            this.start()
-          } else {
-            console.log('Ok, maybe a wise choice?')
-            this.start()
+          again = true
+          while (again) {
+            console.log('Remove word. Which difficulty are you interested in?')
+            let difficultyRem = (await funcs.getDifficulty()).choice
+            let listRemove = await this._FileHandler.loadWordList(difficultyRem)
+            console.log('Choose a word to delete.')
+            let wordToRemove = (await funcs.getAnswerToPrompt(listRemove)).choice
+            let ansRemove = await funcs.getUserInput(`Are you sure you want to remove "${wordToRemove}" [y/n]?`)
+            if (ansRemove.answer === 'y') {
+              try {
+                await this._FileHandler.removeWordfromList(difficultyRem, wordToRemove)
+                console.log(chalk.green(`${wordToRemove} successfully removed!`))
+                if ((await funcs.getUserInput('Delete another word? [y/n]')).answer === 'n') { again = false }
+              } catch (error) {
+                console.error(error)
+              }
+            } else {
+              console.log('Ok, maybe a wise choice?')
+              this.start()
+            }
           }
-
+          this.start()
           break
         case 'Main menu':
           break
         case 'Update word':
+          again = true
+          while (again) {
+            try {
+              console.log('Update word. Which difficulty are you interested in?')
+              let difficultyUpdate = (await funcs.getDifficulty()).choice
+              let listUpdate = await this._FileHandler.loadWordList(difficultyUpdate)
+              console.log('Choose a word to update.')
+              let wordToUpdate = (await funcs.getAnswerToPrompt(listUpdate)).choice
+              console.log(`What word do you want to update "${wordToUpdate}" to?`)
+              let wordToUpdateTo = (await funcs.getUserWordInput('Input the word:')).answer
+              let ansUpdate = await funcs.getUserInput(`Are you sure you want to update "${wordToUpdate}" to "${wordToUpdateTo}" [y/n]?`)
+              if (ansUpdate.answer === 'y') {
+                await this._FileHandler.updateWordfromList(difficultyUpdate, wordToUpdate, wordToUpdateTo)
+                console.log(chalk.green(`${wordToUpdate} successfully updated to ${wordToUpdateTo}`))
+                if ((await funcs.getUserInput('Update another word? [y/n]')).answer === 'n') { again = false }
+              } else {
+                console.log('Ok, maybe a wise choice?')
+                this.start()
+              }
+            } catch (error) {
+              console.log(error)
+            }
+          }
+          this.start()
           break
         default:
           console.log('Not implemented yet')
