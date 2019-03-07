@@ -59,8 +59,7 @@ class FileHandler {
       case 'hard':
         return rf(this._hardWordsPath)
       default:
-        console.log('Something went wrong')
-        break
+        throw new Error('No file at that path4')
     }
   }
 

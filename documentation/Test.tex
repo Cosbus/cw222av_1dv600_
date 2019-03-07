@@ -1,7 +1,7 @@
 \documentclass[12pt, letterpaper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{fancyhdr}
-\usepackage{hyperref}
+\usepackage{hyperref, wasysym}
 
 % Title Page
 \title{Software Development Project - 1DV600 - Test documentation}
@@ -28,6 +28,19 @@
 \section{Test Plan}
 
 \subsection{Objectives}
+The objective of this testing phase is to snuff out as many problems with the application as possible. The testing is aimed at making sure the critical system functions are operational. As this is primarily a game, a large focus is put on the gaming part to make sure that it is working properly. However, since the words used in the game are of great importance to minimize repetitiveness quite a large focus is put on the functionality regarding adding, deleting and updating the words.
+\subsubsection{What to test?}
+As was described above the main testing will be performed on the gaming part of the application. Manual test will be performed to determine that all the critical functionality works with regards to game play, specifically UC2 - Play game. The main scenario as well as some alternative scenarios will be tested.
+\begin{itemize}
+	\item Choosing a game difficulty.
+	\item Providing a letter successfully and unsuccessfully.
+	\item Quitting the game.
+	\item Finishing a word.
+\end{itemize}
+Some attention will also be put on managing words, i.e. UC 5, 6 and 7. All of the manual dynamic tests are to be performed after the code for the use cases have been implemented. For a full breakdown of the manual testing please see section \ref{matrix}.
+\newline
+\newline
+Automated unit tests will also be written to test some of the methods provided in the different objects of the application.
 \subsection{To-do}
 \begin{itemize}
 	\item Plan work
@@ -71,7 +84,7 @@
 \begin{itemize}
 	\item Name: Successfully providing a correct letter.
 	\item Test case ref: TC 2.2
-	\item Use case ref: UC 2.3
+	\item Use case ref: UC 2
 	\item Description: The test case tests how the system responds when the user provides a letter which is correct, and the word is not completely solved.
 \end{itemize}
 \emph{Input}
@@ -88,6 +101,13 @@
 	\item The system prints the number of tries remaining on the screen.
 	\item The system prompts the user to enter a new letter by printing "Please provide a letter:" on the screen.
 \end{itemize}
+\begin{Form}
+	\CheckBox{Test successful}
+	\newline
+	\CheckBox{Test not successful}
+	\newline
+\end{Form}
+\newline
 \emph{Comments}
 \newline
 \newline
@@ -100,7 +120,7 @@
 \begin{itemize}
 	\item Name: Providing an incorrect letter.
 	\item Test case ref: TC 2.3
-	\item Use case ref: UC 2.3.1
+	\item Use case ref: UC 2
 	\item Description: The test case tests how the system responds when the user provides a letter which is incorrect, and the user has more tries.
 \end{itemize}
 \emph{Input}
@@ -117,6 +137,13 @@
 	\item The system prints the number of tries remaining on the screen.
 	\item The system prompts the user to enter a new letter by printing "Please provide a letter:" on the screen.
 \end{itemize}
+\begin{Form}
+	\CheckBox{Test successful}
+	\newline
+	\CheckBox{Test not successful}
+	\newline
+\end{Form}
+\newline
 \emph{Comments}
 \newline
 \newline
@@ -129,7 +156,7 @@
 \begin{itemize}
 	\item Name: Returning from play to main menu.
 	\item Test case ref: TC 2.6
-	\item Use case ref: UC 2.7
+	\item Use case ref: UC 2
 	\item Description: The test case tests how the system responds when the user has finished a word (either by finding the word or having exhausted his/hers amount of tries) and chooses to return to the main menu.
 \end{itemize}
 \emph{Input}
@@ -143,6 +170,13 @@
 \begin{itemize}
 	\item The system shows the main menu on the screen.
 \end{itemize}
+\begin{Form}
+	\CheckBox{Test successful}
+	\newline
+	\CheckBox{Test not successful}
+	\newline
+\end{Form}
+\newline
 \emph{Comments}
 \newline
 \newline
@@ -151,4 +185,403 @@
 \newline
 \newline
 \newline
+\subsubsection{TC 2.a* - Quitting the game while playing}
+\begin{itemize}
+	\item Name: Quitting the game while playing.
+	\item Test case ref: TC 2.a*
+	\item Use case ref: UC 2
+	\item Description: The test case tests how the system responds when the user enters the code for quitting the game while playing.
+\end{itemize}
+\emph{Input}
+\begin{enumerate}
+	\item \underline{Precondition:} The user is playing the game.
+	\item Input "q-t" and press enter.
+	\item The system asks the user if he/she really wants to quit.
+	\item Input "y" and press enter.
+\end{enumerate}
+\emph{Output}
+\begin{itemize}
+	\item The system quits the application entirely.
+\end{itemize}
+\begin{Form}
+\CheckBox{Test successful}
+\newline
+\CheckBox{Test not successful}
+\newline
+\end{Form}
+\newline
+\emph{Comments}
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\subsubsection{TC 5.3 - Inputting a new word}
+\begin{itemize}
+	\item Name: Inputting a new word.
+	\item Test case ref: TC 5.3
+	\item Use case ref: UC 5
+	\item Description: The test case tests how the system responds when the user enters a new word to save to the word list.
+\end{itemize}
+\emph{Input}
+\begin{enumerate}
+	\item \underline{Precondition:} The user has moved to the manage words menu and chosen to add a new word. The system prompts the user to input the word by printing "Input a word:" on the screen.
+	\item Input a word and press enter.
+\end{enumerate}
+\emph{Output}
+\begin{itemize}
+	\item The system prints "Make a choice: (use arrow keys)".
+	\item The system prints the three difficulty levels "easy", "moderate" and "hard" which the user can move between.
+\end{itemize}
+\begin{Form}
+\CheckBox{Test successful}
+\newline
+\CheckBox{Test not successful}
+\newline
+\end{Form}
+\newline
+\emph{Comments}
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\subsubsection{TC 5.5 - Choosing a difficulty for an input word}
+\begin{itemize}
+	\item Name: Choosing a difficulty for an input word.
+	\item Test case ref: TC 5.5
+	\item Use case ref: UC 5
+	\item Description: The test case tests how the system responds when the user enters a difficulty for an input word.
+\end{itemize}
+\emph{Input}
+\begin{enumerate}
+	\item \underline{Precondition:} The user has input a word and pressed enter.
+	\item TC 5.3. Choose a difficulty presented by the system.
+	\item Press enter.
+\end{enumerate}
+\emph{Output}
+\begin{itemize}
+	\item The system prints "Successfully saved" in green text.
+	\item The system prints "Add another word? [y/n]" and waits for the user to respond.
+\end{itemize}
+\begin{Form}
+\CheckBox{Test successful}
+\newline
+\CheckBox{Test not successful}
+\newline
+\end{Form}
+\newline
+\emph{Comments}
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\subsubsection{TC 6.2 - Choosing to remove a word}
+\begin{itemize}
+	\item Name: Choosing to remove a word.
+	\item Test case ref: TC 6.2
+	\item Use case ref: UC 6
+	\item Description: The test case tests how the system responds when the user chooses to remove a word.
+\end{itemize}
+\emph{Input}
+\begin{enumerate}
+	\item \underline{Precondition:} The user has moved to the manage words menu and the system has printed the menu on the screen.
+	\item Choose to remove a word by moving the cursor to the "delete word" choice using the arrow keys.
+	\item Press enter.
+\end{enumerate}
+\emph{Output}
+\begin{itemize}
+	\item The system prints "Remove word. What difficulty are you interested in" on the screen.
+	\item The system prints "Make a choice: (use arrow keys)" on the screen.
+	\item The system prints the choices "easy", "moderate" and "hard" on the screen and waits for the user choice.
+\end{itemize}
+\begin{Form}
+	\CheckBox{Test successful}
+	\newline
+	\CheckBox{Test not successful}
+	\newline
+\end{Form}
+\newline
+\emph{Comments}
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\subsubsection{TC 6.3.1 - Choosing a difficulty for the word to remove}
+\begin{itemize}
+	\item Name: Choosing a difficulty for the word to remove.
+	\item Test case ref: TC 6.3.1
+	\item Use case ref: UC 6
+	\item Description: The test case tests how the system responds when the user chooses a difficulty for the word to be removed.
+\end{itemize}
+\emph{Input}
+\begin{enumerate}
+	\item \underline{Precondition:} The user has chosen to remove a word (TC 6.2).
+	\item Choose a difficulty and press enter.
+\end{enumerate}
+\emph{Output}
+\begin{itemize}
+	\item The system prints all the words on file for the given difficulty on the screen and waits for the user choice. The user can move between the words using the arrow keys to choose.
+\end{itemize}
+\begin{Form}
+	\CheckBox{Test successful}
+	\newline
+	\CheckBox{Test not successful}
+	\newline
+\end{Form}
+\newline
+\emph{Comments}
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\subsubsection{TC 6.3.2 - Choosing a word to remove from the list}
+\begin{itemize}
+	\item Name: Choosing a word to remove from the list.
+	\item Test case ref: TC 6.3.2
+	\item Use case ref: UC 6
+	\item Description: The test case tests how the system responds when the user chooses a word from the list to remove.
+\end{itemize}
+\emph{Input}
+\begin{enumerate}
+	\item \underline{Precondition:} The user has chosen a difficulty for the word to remove (TC 6.3.1).
+	\item Choose a word from the list by using the arrow keys.
+	\item Press enter.
+\end{enumerate}
+\emph{Output}
+\begin{itemize}
+	\item The system prints "Are you sure you want to remove "[thechoosenword]" [y/n]?" and awaits the users answer.
+\end{itemize}
+\begin{Form}
+	\CheckBox{Test successful}
+	\newline
+	\CheckBox{Test not successful}
+	\newline
+\end{Form}
+\newline
+\emph{Comments}
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\subsubsection{TC 6.3.2a - Confirming removal of a chosen word}
+\begin{itemize}
+	\item Name: Confirming removal of a chosen word.
+	\item Test case ref: TC 6.3.2a
+	\item Use case ref: UC 6
+	\item Description: The test case tests how the system responds when the user confirms removal of the chosen word.
+\end{itemize}
+\emph{Input}
+\begin{enumerate}
+	\item \underline{Precondition:} The user has chosen a word to remove from the list (TC 6.3.2).
+	\item Write "y".
+	\item Press enter.
+\end{enumerate}
+\emph{Output}
+\begin{itemize}
+	\item The system prints "[word] successfully removed!" in green text.
+	\item The system prints "Delete another word? [y/n]" and awaits the user response.
+\end{itemize}
+\begin{Form}
+	\CheckBox{Test successful}
+	\newline
+	\CheckBox{Test not successful}
+	\newline
+\end{Form}
+\newline
+\emph{Comments}
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+
+\subsubsection{TC 6.3.2b - Not confirming to remove a chosen word}
+\begin{itemize}
+	\item Name: Not confirming to remove a chosen word.
+	\item Test case ref: TC 6.3.2b
+	\item Use case ref: UC 6
+	\item Description: The test case tests how the system responds when the user chooses to not confirm to remove a word chosen for removal.
+\end{itemize}
+\emph{Input}
+\begin{enumerate}
+	\item \underline{Precondition:} The user has chosen a word to remove from the list (TC 6.3.2).
+	\item Write "n".
+	\item Press enter.
+\end{enumerate}
+\emph{Output}
+\begin{itemize}
+	\item The system prints "Maybe a wise choice?".
+	\item The system prints "Do you want to remove another word [y/n]? and awaits the users answer.
+\end{itemize}
+\begin{Form}
+	\CheckBox{Test successful}
+	\newline
+	\CheckBox{Test not successful}
+	\newline
+\end{Form}
+\newline
+\emph{Comments}
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\subsubsection{TC 7.3 - Choosing a word to update}
+\begin{itemize}
+	\item Name: Choosing a word to update.
+	\item Test case ref: TC 7.3
+	\item Use case ref: UC 7
+	\item Description: The test case tests how the system responds when the user chooses a word to update.
+\end{itemize}
+\emph{Input}
+\begin{enumerate}
+	\item \underline{Precondition:} The user has chosen to update a word from the manage word menu and chosen which difficulty the word should belong to (TC 7.2).
+	\item Choose a word by using the arrow keys.
+	\item Press enter.
+\end{enumerate}
+\emph{Output}
+\begin{itemize}
+	\item The system prints "What word do you want to update "[word]" to?".
+	\item The system awaits the user choice.
+\end{itemize}
+\begin{Form}
+	\CheckBox{Test successful}
+	\newline
+	\CheckBox{Test not successful}
+	\newline
+\end{Form}
+\newline
+\emph{Comments}
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\subsubsection{TC 7.5 - Choosing a word to update to}
+\begin{itemize}
+	\item Name: Choosing a word to update to.
+	\item Test case ref: TC 7.5
+	\item Use case ref: UC 7
+	\item Description: The test case tests how the system responds when the user inputs a word to update to.
+\end{itemize}
+\emph{Input}
+\begin{enumerate}
+	\item \underline{Precondition:} The user has chosen a word to update from the list of words (TC 7.2).
+	\item Write the word to update to.
+	\item Press enter.
+\end{enumerate}
+\emph{Output}
+\begin{itemize}
+	\item The system prints "Are you sure you want to update "[oldword]" to "[newword]" [y/n]?" and awaits the user answer.
+\end{itemize}
+\begin{Form}
+	\CheckBox{Test successful}
+	\newline
+	\CheckBox{Test not successful}
+	\newline
+\end{Form}
+\newline
+\emph{Comments}
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+
+\subsubsection{TC 7.6 - Answering with wrong letter to [y/n] question}
+\begin{itemize}
+	\item Name: Answering with wrong letter to [y/n] question.
+	\item Test case ref: TC 7.6
+	\item Use case ref: UC 7
+	\item Description: The test case tests how the system responds when the user answers with an un-allowed letter to a yes/no question when updating words.
+\end{itemize}
+\emph{Input}
+\begin{enumerate}
+	\item \underline{Precondition:} The user has entered a word to update to (TC 7.5).
+	\item Write any letter or number which differs from "y" or "n".
+	\item Press enter.
+\end{enumerate}
+\emph{Output}
+\begin{itemize}
+	\item The system prints "Please answer "y" or "n"!".
+	\item The system prints "Are you sure you want to update "[oldword]" to "[newword]" [y/n]?" and awaits the user answer.
+\end{itemize}
+\begin{Form}
+	\CheckBox{Test successful}
+	\newline
+	\CheckBox{Test not successful}
+	\newline
+\end{Form}
+\newline
+\emph{Comments}
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\subsection{Test report for automated test}\label{matrix}
+\begin{center}
+	\begin{tabular}{|c|c|c|c|c|c|} 
+		\hline
+		\textbf{Test} & \textbf{UC 2} & \textbf{UC 4} & \textbf{UC 5} & \textbf{UC 6} & \textbf{UC7} \\ [0.5ex] 
+		\hline\hline
+		TC 2.2 & 1 & 0 & 0 & 0 & 0 \\
+		\hline
+		TC 2.3 & 1 & 0 & 0 & 0 & 0 \\
+		\hline 
+		TC 2.6 & 1 & 0 & 0 & 0 & 0 \\
+		\hline 
+		TC 2.a* & 1 & 0 & 0 & 0 & 0\\
+		\hline
+		TC 5.3 & 0 & 0 & 1 & 0 & 0\\ 
+		\hline
+		TC 5.5 & 0 & 0 & 1 & 0 & 0\\ 
+		\hline
+		TC 6.2 & 0 & 0 & 0 & 1 & 0\\ 
+		\hline
+		TC 6.3.1 & 0 & 0 & 0 & 1 & 0\\ 
+		\hline
+		TC 6.3.2 & 0 & 0 & 0 & 1 & 0\\ 
+		\hline
+		TC 6.3.2a & 0 & 0 & 0 & 1 & 0\\ 
+		\hline
+		TC 6.3.2b & 0 & 0 & 0 & 1 & 0\\
+		\hline
+		TC 7.3 & 0 & 0 & 0 & 0 & 1\\ 
+		\hline
+		TC 7.5 & 0 & 0 & 0 & 0 & 1\\ 
+		\hline
+		TC 7.6 & 0 & 0 & 0 & 0 & 1\\ 		
+		\hline
+		\textbf{Coverage and success} & 4/OK & 0 & 2/OK & 4/OK & 3/OK \\[1ex]
+		\hline 
+	\end{tabular}
+\end{center}
 \end{document}          

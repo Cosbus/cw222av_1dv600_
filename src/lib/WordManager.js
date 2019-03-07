@@ -7,13 +7,10 @@
  * @version 1.0.0
  */
 
-const WordList = require('./WordList.js')
 const funcs = require('./Funcs')
 const figlet = require('figlet')
 const chalk = require('chalk')
-const inquirer = require('inquirer')
 const FileHandler = require('./FileHandler.js')
-const clear = require('clear')
 
 /**
  * A class which handles the managing of words.
