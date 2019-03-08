@@ -1,1 +1,1 @@
-police, car, horse, dog, bicycle, door, dream, cup, cold, drug, worm
+policecar, horse, dog, bicycle, door, dream, cup, cold, drug, worm, 

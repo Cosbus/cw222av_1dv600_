@@ -62,7 +62,7 @@ class Word {
    */
   setWord (word) {
     this._word = word
-    this._getLettersOfWord()
+    this._setLettersOfWord()
   }
 
   /**

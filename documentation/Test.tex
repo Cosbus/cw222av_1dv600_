@@ -1,7 +1,11 @@
 \documentclass[12pt, letterpaper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{fancyhdr}
-\usepackage{hyperref, wasysym}
+\usepackage{graphicx}
+\usepackage{float}
+\graphicspath{ {./images/} }
+\usepackage[hidelinks]{hyperref}
+\usepackage{wasysym}
 
 % Title Page
 \title{Software Development Project - 1DV600 - Test documentation}
@@ -30,7 +34,7 @@
 \subsection{Objectives}
 The objective of this testing phase is to snuff out as many problems with the application as possible. The testing is aimed at making sure the critical system functions are operational. As this is primarily a game, a large focus is put on the gaming part to make sure that it is working properly. However, since the words used in the game are of great importance to minimize repetitiveness quite a large focus is put on the functionality regarding adding, deleting and updating the words.
 \subsubsection{What to test?}
-As was described above the main testing will be performed on the gaming part of the application. Manual test will be performed to determine that all the critical functionality works with regards to game play, specifically UC2 - Play game. The main scenario as well as some alternative scenarios will be tested.
+As was described above the main testing will be performed on the gaming part of the application. Manual test will be performed to determine that all the critical functionality works with regards to game play, specifically UC2 - Play game (UC 1 is concerned with the main menu and is not tested here). The main scenario as well as some alternative scenarios will be tested.
 \begin{itemize}
 	\item Choosing a game difficulty.
 	\item Providing a letter successfully and unsuccessfully.
@@ -43,20 +47,12 @@ Some attention will also be put on managing words, i.e. UC 5, 6 and 7. All of th
 Automated unit tests will also be written to test some of the methods provided in the different objects of the application.
 \subsection{To-do}
 \begin{itemize}
-	\item Plan work
-	\begin{itemize}
-		\item Is required functionality missing?
-		\item Should new functionality be implemented?
-		\item Prioritize what needs to be done.
-	\end{itemize}
-	\item Update project document.
-	\item Possible: Implement new features.
-	\begin{itemize}
-		\item Prepare UML for new features.
-		\item Implement new features.
-		\item Test new features as well as whole game.
-	\end{itemize}
-	\item Complete and hand in project.
+	\item Study course material regarding testing
+	\item Manual TC - planning
+	\item Manual TC - perform
+	\item Automated unit test - planning (including learning frameworks etc.)
+	\item Automated unit test - perform
+	\item Test report
 \end{itemize}
 \subsection{Time estimates and Time log}
 \begin{center}
@@ -64,15 +60,19 @@ Automated unit tests will also be written to test some of the methods provided i
 		\hline
 		Task & Estimate [hrs] & Actual time \\ [0.5ex] 
 		\hline\hline
-		Plan work & 2 & -- \\ 
+		Study course material regarding testing & 5 & 3 \\ 
 		\hline
-		Document update & 1 & --\\
+		Manual TC - planning & 2 & 2.5 \\
 		\hline 
-		Possible implementation & 10-15 & -- \\ 
+		Manual TC - perform & 0.5 & 0.5 \\ 
 		\hline
-		Finish up and hand in & 2 & --\\ 
-		\hline 
-		Total time & 20 & --\\ [1ex]
+		Automated unit test - planning & 4 & 3.5 \\ 
+		\hline 		
+		Automated unit test - perform & 4 & 2.5 \\
+		\hline
+		Test report & 2 & 2.5 \\
+		\hline
+		Total time & 17.5 & 14.5\\ [1ex]
 		\hline
 		
 	\end{tabular}
@@ -94,7 +94,7 @@ Automated unit tests will also be written to test some of the methods provided i
 	\item Input a correct letter.
 	\item Press enter.
 \end{enumerate}
-\emph{Output}
+\emph{Expected}
 \begin{itemize}
 	\item The system prints "Correct!" on the screen.
 	\item The system prints the number of letters remaining on the screen.
@@ -130,7 +130,7 @@ Automated unit tests will also be written to test some of the methods provided i
 	\item Input an incorrect letter.
 	\item Press enter.
 \end{enumerate}
-\emph{Output}
+\emph{Expected}
 \begin{itemize}
 	\item The system prints "Unfortunately wrong." on the screen.
 	\item The system prints the number of letters remaining on the screen.
@@ -145,13 +145,7 @@ Automated unit tests will also be written to test some of the methods provided i
 \end{Form}
 \newline
 \emph{Comments}
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
+No problems detected.
 \subsubsection{TC 2.6 - Returning from play to main menu}
 \begin{itemize}
 	\item Name: Returning from play to main menu.
@@ -166,7 +160,7 @@ Automated unit tests will also be written to test some of the methods provided i
 	\item Input "m" to return to main menu.
 	\item Press enter.
 \end{enumerate}
-\emph{Output}
+\emph{Expected}
 \begin{itemize}
 	\item The system shows the main menu on the screen.
 \end{itemize}
@@ -178,13 +172,7 @@ Automated unit tests will also be written to test some of the methods provided i
 \end{Form}
 \newline
 \emph{Comments}
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
+No problems encountered.
 \subsubsection{TC 2.a* - Quitting the game while playing}
 \begin{itemize}
 	\item Name: Quitting the game while playing.
@@ -199,7 +187,7 @@ Automated unit tests will also be written to test some of the methods provided i
 	\item The system asks the user if he/she really wants to quit.
 	\item Input "y" and press enter.
 \end{enumerate}
-\emph{Output}
+\emph{Expected}
 \begin{itemize}
 	\item The system quits the application entirely.
 \end{itemize}
@@ -211,13 +199,7 @@ Automated unit tests will also be written to test some of the methods provided i
 \end{Form}
 \newline
 \emph{Comments}
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
+No problems encountered.
 \subsubsection{TC 5.3 - Inputting a new word}
 \begin{itemize}
 	\item Name: Inputting a new word.
@@ -230,7 +212,7 @@ Automated unit tests will also be written to test some of the methods provided i
 	\item \underline{Precondition:} The user has moved to the manage words menu and chosen to add a new word. The system prompts the user to input the word by printing "Input a word:" on the screen.
 	\item Input a word and press enter.
 \end{enumerate}
-\emph{Output}
+\emph{Expected}
 \begin{itemize}
 	\item The system prints "Make a choice: (use arrow keys)".
 	\item The system prints the three difficulty levels "easy", "moderate" and "hard" which the user can move between.
@@ -243,13 +225,7 @@ Automated unit tests will also be written to test some of the methods provided i
 \end{Form}
 \newline
 \emph{Comments}
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
+Works as expected.
 \subsubsection{TC 5.5 - Choosing a difficulty for an input word}
 \begin{itemize}
 	\item Name: Choosing a difficulty for an input word.
@@ -263,7 +239,7 @@ Automated unit tests will also be written to test some of the methods provided i
 	\item TC 5.3. Choose a difficulty presented by the system.
 	\item Press enter.
 \end{enumerate}
-\emph{Output}
+\emph{Expected}
 \begin{itemize}
 	\item The system prints "Successfully saved" in green text.
 	\item The system prints "Add another word? [y/n]" and waits for the user to respond.
@@ -276,13 +252,7 @@ Automated unit tests will also be written to test some of the methods provided i
 \end{Form}
 \newline
 \emph{Comments}
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
+No problems found.
 \subsubsection{TC 6.2 - Choosing to remove a word}
 \begin{itemize}
 	\item Name: Choosing to remove a word.
@@ -296,7 +266,7 @@ Automated unit tests will also be written to test some of the methods provided i
 	\item Choose to remove a word by moving the cursor to the "delete word" choice using the arrow keys.
 	\item Press enter.
 \end{enumerate}
-\emph{Output}
+\emph{Expected}
 \begin{itemize}
 	\item The system prints "Remove word. What difficulty are you interested in" on the screen.
 	\item The system prints "Make a choice: (use arrow keys)" on the screen.
@@ -310,13 +280,7 @@ Automated unit tests will also be written to test some of the methods provided i
 \end{Form}
 \newline
 \emph{Comments}
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
+Works, the word has been removed.
 \subsubsection{TC 6.3.1 - Choosing a difficulty for the word to remove}
 \begin{itemize}
 	\item Name: Choosing a difficulty for the word to remove.
@@ -329,7 +293,7 @@ Automated unit tests will also be written to test some of the methods provided i
 	\item \underline{Precondition:} The user has chosen to remove a word (TC 6.2).
 	\item Choose a difficulty and press enter.
 \end{enumerate}
-\emph{Output}
+\emph{Expected}
 \begin{itemize}
 	\item The system prints all the words on file for the given difficulty on the screen and waits for the user choice. The user can move between the words using the arrow keys to choose.
 \end{itemize}
@@ -341,13 +305,7 @@ Automated unit tests will also be written to test some of the methods provided i
 \end{Form}
 \newline
 \emph{Comments}
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
+Works.
 \subsubsection{TC 6.3.2 - Choosing a word to remove from the list}
 \begin{itemize}
 	\item Name: Choosing a word to remove from the list.
@@ -361,7 +319,7 @@ Automated unit tests will also be written to test some of the methods provided i
 	\item Choose a word from the list by using the arrow keys.
 	\item Press enter.
 \end{enumerate}
-\emph{Output}
+\emph{Expected}
 \begin{itemize}
 	\item The system prints "Are you sure you want to remove "[thechoosenword]" [y/n]?" and awaits the users answer.
 \end{itemize}
@@ -373,13 +331,7 @@ Automated unit tests will also be written to test some of the methods provided i
 \end{Form}
 \newline
 \emph{Comments}
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
+No problems.
 \subsubsection{TC 6.3.2a - Confirming removal of a chosen word}
 \begin{itemize}
 	\item Name: Confirming removal of a chosen word.
@@ -393,7 +345,7 @@ Automated unit tests will also be written to test some of the methods provided i
 	\item Write "y".
 	\item Press enter.
 \end{enumerate}
-\emph{Output}
+\emph{Expected}
 \begin{itemize}
 	\item The system prints "[word] successfully removed!" in green text.
 	\item The system prints "Delete another word? [y/n]" and awaits the user response.
@@ -406,14 +358,7 @@ Automated unit tests will also be written to test some of the methods provided i
 \end{Form}
 \newline
 \emph{Comments}
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
-
+No problems.
 \subsubsection{TC 6.3.2b - Not confirming to remove a chosen word}
 \begin{itemize}
 	\item Name: Not confirming to remove a chosen word.
@@ -427,7 +372,7 @@ Automated unit tests will also be written to test some of the methods provided i
 	\item Write "n".
 	\item Press enter.
 \end{enumerate}
-\emph{Output}
+\emph{Expected}
 \begin{itemize}
 	\item The system prints "Maybe a wise choice?".
 	\item The system prints "Do you want to remove another word [y/n]? and awaits the users answer.
@@ -440,13 +385,7 @@ Automated unit tests will also be written to test some of the methods provided i
 \end{Form}
 \newline
 \emph{Comments}
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
+Not successful. The system moves back to the choice of choosing a difficulty to remove. When continuing the system goes haywire after a while. It would seem that the system emits new events while not removing old ones. This must be taken care of.
 \subsubsection{TC 7.3 - Choosing a word to update}
 \begin{itemize}
 	\item Name: Choosing a word to update.
@@ -460,7 +399,7 @@ Automated unit tests will also be written to test some of the methods provided i
 	\item Choose a word by using the arrow keys.
 	\item Press enter.
 \end{enumerate}
-\emph{Output}
+\emph{Expected}
 \begin{itemize}
 	\item The system prints "What word do you want to update "[word]" to?".
 	\item The system awaits the user choice.
@@ -473,13 +412,7 @@ Automated unit tests will also be written to test some of the methods provided i
 \end{Form}
 \newline
 \emph{Comments}
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
+Works.
 \subsubsection{TC 7.5 - Choosing a word to update to}
 \begin{itemize}
 	\item Name: Choosing a word to update to.
@@ -493,7 +426,7 @@ Automated unit tests will also be written to test some of the methods provided i
 	\item Write the word to update to.
 	\item Press enter.
 \end{enumerate}
-\emph{Output}
+\emph{Expected}
 \begin{itemize}
 	\item The system prints "Are you sure you want to update "[oldword]" to "[newword]" [y/n]?" and awaits the user answer.
 \end{itemize}
@@ -505,14 +438,7 @@ Automated unit tests will also be written to test some of the methods provided i
 \end{Form}
 \newline
 \emph{Comments}
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
-
+Works.
 \subsubsection{TC 7.6 - Answering with wrong letter to [y/n] question}
 \begin{itemize}
 	\item Name: Answering with wrong letter to [y/n] question.
@@ -526,7 +452,7 @@ Automated unit tests will also be written to test some of the methods provided i
 	\item Write any letter or number which differs from "y" or "n".
 	\item Press enter.
 \end{enumerate}
-\emph{Output}
+\emph{Expected}
 \begin{itemize}
 	\item The system prints "Please answer "y" or "n"!".
 	\item The system prints "Are you sure you want to update "[oldword]" to "[newword]" [y/n]?" and awaits the user answer.
@@ -539,14 +465,57 @@ Automated unit tests will also be written to test some of the methods provided i
 \end{Form}
 \newline
 \emph{Comments}
+Works.
+\section{Automated tests}
+The unit test cover a class called authenticator to authenticate if the user can manage words, a class called FileHandler which handles the saving and loading of words for a given game, and a class called Word which handles a single word in the wordlist. The frameword Mocha together with Chai and Chai-as-promised (for testing asynchronous methods) was used for performing automated testing in Node.js.
+\subsection{Test runs}
+ A screenshot of the output from the automated tests can be found in figure \ref{fig:automatedTest1}. As can be seen from figure \ref{fig:automatedTest1}, the method getSumAndQ in the Authenticator class fails for a certain scenario. Figure \ref{fig:automatedTest2} show a new test-run performed after having fixed the bug in the code. As can be seen, all test now succeed. 
 \newline
-\newline
-\newline
-\newline
-\newline
-\newline
-\newline
-\subsection{Test report for automated test}\label{matrix}
+\begin{figure}[H]\label{fig:automatedTest1}
+	\includegraphics{automatedTest1}
+	\caption{Automated test run with a bug in the code.}
+	\centering
+\end{figure}
+\begin{figure}[H]\label{fig:automatedTest2}
+	\includegraphics{automatedTest2}
+	\caption{Automated test run with the bug removed.}
+	\centering
+\end{figure}
+\subsection{The test code}
+The test code can be found in the figures below. Three files were used, one for each class tested (due to space constraints there are two screenshots for each test file).
+\begin{figure}[H]\label{fig:code11}
+	\includegraphics{code1_1}
+	\caption{Test code for Authenticator 1 of 2}
+	\centering
+\end{figure}
+\begin{figure}[H]\label{fig:code12}
+	\includegraphics{code1_2}
+	\caption{Test code for Authenticator 2 of 2}
+	\centering
+\end{figure}
+\begin{figure}[H]\label{fig:code21}
+	\includegraphics{code2_1}
+	\caption{Test code for FileHandler 1 of 2}
+	\centering
+\end{figure}
+\begin{figure}[H]\label{fig:code22}
+	\includegraphics{code2_2}
+	\caption{Test code for FileHandler 2 of 2}
+	\centering
+\end{figure}
+\begin{figure}[H]\label{fig:code31}
+	\includegraphics{code3_1}
+	\caption{Test code for Word 1 of 2}
+	\centering
+\end{figure}
+\begin{figure}[H]\label{fig:code32}
+	\includegraphics[width=15cm]{code3_2}
+	\caption{Test code for Word 2 of 2}
+	\centering
+\end{figure}
+\newpage
+\section{Test report for tests}\label{matrix}
+\subsection{Manual test matrix}
 \begin{center}
 	\begin{tabular}{|c|c|c|c|c|c|} 
 		\hline
@@ -572,7 +541,7 @@ Automated unit tests will also be written to test some of the methods provided i
 		\hline
 		TC 6.3.2a & 0 & 0 & 0 & 1 & 0\\ 
 		\hline
-		TC 6.3.2b & 0 & 0 & 0 & 1 & 0\\
+		TC 6.3.2b & 0 & 0 & 0 & 1/Not OK & 0\\
 		\hline
 		TC 7.3 & 0 & 0 & 0 & 0 & 1\\ 
 		\hline
@@ -580,8 +549,44 @@ Automated unit tests will also be written to test some of the methods provided i
 		\hline
 		TC 7.6 & 0 & 0 & 0 & 0 & 1\\ 		
 		\hline
-		\textbf{Coverage and success} & 4/OK & 0 & 2/OK & 4/OK & 3/OK \\[1ex]
+		\textbf{Coverage and success} & 4/OK & 0 & 2/OK & 3/4 OK & 3/OK \\[1ex]
 		\hline 
 	\end{tabular}
 \end{center}
+\subsection{Automated test matrix}
+\begin{center}
+	\begin{tabular}{|c|c|c|c|c|} 
+		\hline
+		\textbf{Test} & \textbf{Word} & \textbf{Funcs} & \textbf{FileHandler} & \textbf{Authenticator} \\ [0.5ex] 
+		\hline\hline
+		testWord & 3 & 0 & 0 & 0  \\
+		\hline
+		testFileHandler & 0 & 0 & 4 & 0  \\
+		\hline 
+		testAthenticator & 0 & 0 & 0 & 5  \\
+		\hline  		
+		\hline
+		\textbf{Coverage and success} & 3/OK & 0 & 4/OK & 4/OK  \\[1ex]
+		\hline 
+	\end{tabular}
+\end{center}
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|c|} 
+		\hline
+		\textbf{Test} & \textbf{Game} & \textbf{WordList} & \textbf{HighScores} & \textbf{Player} \\ [0.5ex] 
+		\hline\hline
+		testWord & 0 & 0 & 0 & 0  \\
+		\hline
+		testFileHandler & 0 & 0 & 0 & 0  \\
+		\hline 
+		testAthenticator & 0 & 0 & 0 & 0  \\
+		\hline  		
+		\hline
+		\textbf{Coverage and success} & 0 & 0 & 0 & 0  \\[1ex]
+		\hline 
+	\end{tabular}
+\end{center}
+\section{Reflection}
+Having performed these tests I believe that testing is not only crucial for finding faults within the code, but also that testing at an early phase will actually make the code better. I believe this is especially true for the unit tests since these made me realize and think more about my actual method implementations, specifically with regards to my inputs and the outputs received. Thus, the code would not only be better because less bugs are found, but also because the code is logical with a good separation of concerns between different components. Continuing forward my goal will be to test early if possible.
 \end{document}          

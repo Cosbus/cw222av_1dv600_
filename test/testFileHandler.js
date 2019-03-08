@@ -1,5 +1,5 @@
 /**
- * Test module for FilHandler
+ * Test module for FileHandler
  *
  * @module test/testFileHandler.js
  * @author Claes Weyde
@@ -7,7 +7,6 @@
  */
 
 const chai = require('chai')
-const assert = chai.assert
 const expect = chai.expect
 const chaiAsPromised = require('chai-as-promised')
 chai.use(chaiAsPromised)

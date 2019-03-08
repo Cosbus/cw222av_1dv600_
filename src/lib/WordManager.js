@@ -29,7 +29,7 @@ class WordManager {
   }
 
   /**
-   * A which serves as the entry point to the manage word menu and handles the logic.
+   * A function which serves as the entry point to the manage word menu and handles the logic.
    *
    * @return {[promise]} the promise containing the user choice.
    * @memberof WordManager

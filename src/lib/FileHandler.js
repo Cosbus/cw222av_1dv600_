@@ -59,7 +59,7 @@ class FileHandler {
       case 'hard':
         return rf(this._hardWordsPath)
       default:
-        throw new Error('No file at that path4')
+        throw new Error('No file at that path')
     }
   }
 
