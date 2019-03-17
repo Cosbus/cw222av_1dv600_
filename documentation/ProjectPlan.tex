@@ -50,6 +50,8 @@
 		21.02.2019 & Version 2.4 & Reflection writing & Claes Weyde \\
 		\hline
 		02.03.2019 & Version 3.0 & Updated iteration 3 & Claes Weyde \\
+		\hline
+		17.03.2019 & Version 3.1 & Planned iteration 4 in detail & Claes Weyde \\
 		[1ex]
 		\hline
 		
@@ -92,7 +94,7 @@
 Hangman re-imagined! Our vision for this project is to create a version of Hangman which will keep the user at the edge of her or his seat. To not only provide entertainment and leisure, but also thought-provoking imagery and themes. 
 \newline
 \newline
- The Hangman game we envision will be a text-based console application where the user will play hangman. The end user we primarily envision is a person learning a new language or trying to increase their grasp of a language which they already known. By making the process fun we believe that learning is facilitated and that the user will have a easier time recalling the material. However, the game is not only aimed at language learners but also to the casual player looking for a bit of fun.
+ The Hangman game we envision will be a text-based console application where the user will play hangman. The end user we primarily envision is a person learning a new language or trying to increase their grasp of a language which they already know. By making the process fun we believe that learning is facilitated and that the user will have a easier time recalling the material. However, the game is not only aimed at language learners but also to the casual player looking for a bit of fun.
  \newline
  \newline
  To aid learning and encourage competitiveness (which may be a means for aiding learning) a high-score system should be implemented, giving the user the possibility of competing against him or herself and other users. Furthermore, we also envision the usage of incentives for the user who performs well. The high-score is certainly one, but another may be the possibility of adding new words to the game. Thereby the well-performing user have the ability of evolving the game further. To cater to different users, as well as to allow the avid user to constantly evolve, we also envision the possibility for the player to choose a difficulty.
@@ -360,20 +362,49 @@ The time estimation is provided in more depth in the document "Test.pdf". In fac
 \end{center}
 \subsection{Iteration 4}
 After this iteration the game is supposed to be finished. Some additional features may be implemented but the focus will be on a well working application.
+\subsubsection{Iteration Plan}
+The purpose of this iteration is to finish the application. The requirements which are not finished yet are detailed below.
+\begin{itemize}
+	\item High-scores
+	\item Graphics (ascii-art)
+	\item Timer
+	\item Login
+	\item Super-user
+\end{itemize}
+Since the allotted time will not be enough for finishing all of the desired functionality a compromise must be reached. Therefore, the most important elements of the application was determined Based on the vision and the end-user which the game is geared towards. For a user aiming to learn or increase their knowledge of a language the most important aspects are not the competitive parts. Instead the words and the ability to affect the words are more important. Thus, aspects such as high-score, login and timer are not very important. Furthermore, the graphics are of a secondary importance. Thus, giving the very limited time available it was decided that the timer, the user login functionality and the high-scores would not be implemented.
+\newline
+\newline
+ Furthermore, the "super-user"-functionality which was a way of being able to manage the words will be changed. The purpose of the super-user was to provide a way of managing the words without giving every user that access, thereby mitigating the risk of words being added in the wrong category or with the wrong spelling. Instead of a dedicated user, a password will now be needed in order to access the manage words menu. Thus the same functionality is available but having a simpler implementation (and somewhat less security).
+ \newline
+ \newline
+ In addition, the graphics will be simplified. The amount of letters left in the word will be shown, as well as the position of the letters within the word. The ascii-art will only be implemented if time allows.
+ \newline
+ \newline
+ Finally, some bugs which were found during the testing phase of iteration 3 will be fixed. A detailed plan of the work to be performed is itemized under "to-do" below. They are represented in the order in which they will be done. The new features will be implemented using test-driven development.
 \subsubsection{To-do}
 \begin{itemize}
 	\item Plan work
+	\item Fix bugs found in iteration 3.
+	\item Provide UML-diagrams for the new functionality.
 	\begin{itemize}
-		\item Is required functionality missing?
-		\item Should new functionality be implemented?
-		\item Prioritize what needs to be done.
+		\item Use case diagram.
+		\item State machine diagram.
 	\end{itemize}
-	\item Update project document.
-	\item Possible: Implement new features.
+	\item Write test-code for the functions to be implemented.
 	\begin{itemize}
-		\item Prepare UML for new features.
-		\item Implement new features.
-		\item Test new features as well as whole game.
+		\item Password handling for manage-user menu.
+		\item The graphics presentation.
+	\end{itemize}
+	\item Implement the new functionality.
+	\begin{itemize}
+		\item Password handling.
+		\item Graphics presentation.
+	\end{itemize} 
+	\item Test the new functionality statically and dynamically.
+	\item Write documentation.
+	\begin{itemize}
+		\item Update Project document.
+		\item Write/draw class diagram.
 	\end{itemize}
 	\item Complete and hand in project.
 \end{itemize}
@@ -383,20 +414,40 @@ After this iteration the game is supposed to be finished. Some additional featur
 		\hline
 		Task & Estimate [hrs] & Actual time \\ [0.5ex] 
 		\hline\hline
-		Plan work & 2 & -- \\ 
+		Plan work & 1.5 & 1 \\ 
 		\hline
-		Document update & 1 & --\\
+		Fix bugs found in iteration 3 & 2 & --\\
 		\hline 
-		Possible implementation & 10-15 & -- \\ 
+		Provide UML-diagrams for new functionality & 3 & -- \\  
 		\hline
-		Finish up and hand in & 2 & --\\ 
+		Write test code for new functionality & 4 & -- \\ 
+		\hline
+		Implement new functionality & 5 & -- \\ 
+		\hline
+		Testing of new functionality & 2 & -- \\ 
+		\hline
+		Update documentation & 4 & -- \\ 
+		\hline
+		Finish up and hand in & 1 & --\\ 
 		\hline 
-		Total time & 20 & --\\ [1ex]
+		Total time & 22.5 & --\\ [1ex]
 		\hline
 		
 	\end{tabular}
 \end{center}
 \newpage
+\subsection{Use cases}
+The Use-cases can be found in the document "use-cases.pdf". The use-cases provided for this iteration are UC ??.
+\subsection{Testing}
+\subsubsection{Unit tests}
+The unit tests are found in the repository in the test-folder. A screen-shot of the unit-test when run can be found in figure ?? below.
+\subsubsection{Static and dynamic testing}
+The code was tested statically using code review. The code was also tested dynamically by following the test-cases found in the document "test.pdf" under heading "iteration 4". The test cases aim to cover as many scenarios as possible and the aim is to provide as full a coverage as possible for the new functionality. For a detailed breakdown of the tests performed, see document "test.pdf". 
+\subsection{Class diagrams}
+The class diagrams for the fully implemented game can be found in a separate file called "Class Diagram.pdf" in the folder "Use Cases".
+\subsection{Reflection}
+
+
 \section{Risk Analysis}
 The overarching risks for this project is connected to the time available for performing the work. The possibility of a hardware failure is for example relatively low, especially considering the redundancy afforded by having two computers available. However, due to severe constraints regarding the time available all risks which reduces the available time are quite serious. Since all events will impact the time available they are all quite serious which make the most probable events most important (since both the impact and the probability are quite high). Thus, a lot of effort will have to be made to make sure that probable events are avoided or mitigated. The staff has children in pre-school which unfortunately equates to a lot of sickness. The probability that this event occurs is hard to reduce which is why the effect of such a event must be mitigated. In an effort to create somewhat of a buffer for these kind of events it is wise to try and keep ahead of schedule if possible.
 \newline

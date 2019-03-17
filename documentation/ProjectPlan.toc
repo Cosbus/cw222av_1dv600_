@@ -28,13 +28,20 @@
 \contentsline {subsubsection}{\numberline {6.3.1}To-do}{16}% 
 \contentsline {subsubsection}{\numberline {6.3.2}Time estimates and Time log}{16}% 
 \contentsline {subsection}{\numberline {6.4}Iteration 4}{17}% 
-\contentsline {subsubsection}{\numberline {6.4.1}To-do}{17}% 
-\contentsline {subsubsection}{\numberline {6.4.2}Time estimates and Time log}{17}% 
-\contentsline {section}{\numberline {7}Risk Analysis}{18}% 
-\contentsline {subsection}{\numberline {7.1}List of risks}{18}% 
-\contentsline {subsection}{\numberline {7.2}Strategies}{19}% 
-\contentsline {subsubsection}{\numberline {7.2.1}Hardware failure}{19}% 
-\contentsline {subsubsection}{\numberline {7.2.2}Illness}{19}% 
-\contentsline {subsubsection}{\numberline {7.2.3}Underestimation of time requirements}{19}% 
-\contentsline {subsubsection}{\numberline {7.2.4}Too many features required in application}{20}% 
-\contentsline {subsection}{\numberline {7.3}Reflection}{20}% 
+\contentsline {subsubsection}{\numberline {6.4.1}Iteration Plan}{17}% 
+\contentsline {subsubsection}{\numberline {6.4.2}To-do}{18}% 
+\contentsline {subsubsection}{\numberline {6.4.3}Time estimates and Time log}{19}% 
+\contentsline {subsection}{\numberline {6.5}Use cases}{20}% 
+\contentsline {subsection}{\numberline {6.6}Testing}{20}% 
+\contentsline {subsubsection}{\numberline {6.6.1}Unit tests}{20}% 
+\contentsline {subsubsection}{\numberline {6.6.2}Static and dynamic testing}{20}% 
+\contentsline {subsection}{\numberline {6.7}Class diagrams}{20}% 
+\contentsline {subsection}{\numberline {6.8}Reflection}{20}% 
+\contentsline {section}{\numberline {7}Risk Analysis}{20}% 
+\contentsline {subsection}{\numberline {7.1}List of risks}{21}% 
+\contentsline {subsection}{\numberline {7.2}Strategies}{21}% 
+\contentsline {subsubsection}{\numberline {7.2.1}Hardware failure}{21}% 
+\contentsline {subsubsection}{\numberline {7.2.2}Illness}{22}% 
+\contentsline {subsubsection}{\numberline {7.2.3}Underestimation of time requirements}{22}% 
+\contentsline {subsubsection}{\numberline {7.2.4}Too many features required in application}{22}% 
+\contentsline {subsection}{\numberline {7.3}Reflection}{22}% 
