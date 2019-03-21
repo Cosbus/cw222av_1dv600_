@@ -23,7 +23,7 @@ class Authenticator {
   constructor (num1 = 0, num2 = 0) {
     this._numberOne = num1
     this._numberTwo = num2
-    this._psw = process.env.MANAGEWORDPSW
+    this._psw = process.env.MANAGEWORDPSW || 'deconstrucor'
   }
 
   /**
