@@ -1,6 +1,12 @@
 \documentclass[12pt, letterpaper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{fancyhdr}
+\usepackage{graphicx}
+
+\usepackage{enumitem}
+\usepackage{float}
+
+\graphicspath{ {./images/} }
 
 % Title Page
 \title{Software Development Project - 1DV600}
@@ -52,6 +58,10 @@
 		02.03.2019 & Version 3.0 & Updated iteration 3 & Claes Weyde \\
 		\hline
 		17.03.2019 & Version 3.1 & Planned iteration 4 in detail & Claes Weyde \\
+		\hline
+		20.03.2019 & Version 3.2 & Wrote some test case information & Claes Weyde \\
+		\hline
+		21.03.2019 & Version 3.2 & Finalized the document & Claes Weyde \\
 		[1ex]
 		\hline
 		
@@ -371,7 +381,7 @@ The purpose of this iteration is to finish the application. The requirements whi
 	\item Login
 	\item Super-user
 \end{itemize}
-Since the allotted time will not be enough for finishing all of the desired functionality a compromise must be reached. Therefore, the most important elements of the application was determined Based on the vision and the end-user which the game is geared towards. For a user aiming to learn or increase their knowledge of a language the most important aspects are not the competitive parts. Instead the words and the ability to affect the words are more important. Thus, aspects such as high-score, login and timer are not very important. Furthermore, the graphics are of a secondary importance. Thus, giving the very limited time available it was decided that the timer, the user login functionality and the high-scores would not be implemented.
+Since the allotted time will not be enough for finishing all of the desired functionality a compromise must be reached. Therefore, the most important elements of the application was determined based on the vision and the end-user which the game is geared towards. For a user aiming to learn or increase their knowledge of a language the most important aspects are not the competitive parts. Instead the words and the ability to affect the words are more important. Thus, aspects such as high-score, login and timer are not very important. Furthermore, the graphics are of a secondary importance. Thus, giving the very limited time available it was decided that the timer, the user login functionality and the high-scores would not be implemented.
 \newline
 \newline
  Furthermore, the "super-user"-functionality which was a way of being able to manage the words will be changed. The purpose of the super-user was to provide a way of managing the words without giving every user that access, thereby mitigating the risk of words being added in the wrong category or with the wrong spelling. Instead of a dedicated user, a password will now be needed in order to access the manage words menu. Thus the same functionality is available but having a simpler implementation (and somewhat less security).
@@ -381,6 +391,8 @@ Since the allotted time will not be enough for finishing all of the desired func
  \newline
  \newline
  Finally, some bugs which were found during the testing phase of iteration 3 will be fixed. A detailed plan of the work to be performed is itemized under "to-do" below. They are represented in the order in which they will be done. The new features will be implemented using test-driven development.
+\subsubsection{Risk}
+The risks are substantially the same as for the project as a whole. It is mostly the time which is the bottleneck in this iteration and the possible risks that may reduce the time available will be most important. Once again, this is mostly illness in the work force as well as people connected to the work force. Furthermore, since there is only about two weeks for the entire fourth iteration the time may be reduced further by other tasks that need to be attended (such as work etc.). Risk mitigation is performed by making sure that a good support network is available.
 \subsubsection{To-do}
 \begin{itemize}
 	\item Plan work
@@ -416,19 +428,19 @@ Since the allotted time will not be enough for finishing all of the desired func
 		\hline\hline
 		Plan work & 1.5 & 1 \\ 
 		\hline
-		Fix bugs found in iteration 3 & 2 & --\\
+		Fix bugs found in iteration 3 & 2 & 1.5 \\
 		\hline 
-		Provide UML-diagrams for new functionality & 3 & -- \\  
+		Provide UML-diagrams for new functionality & 3 & 2 \\  
 		\hline
-		Write test code for new functionality & 4 & -- \\ 
+		Write test code for new functionality & 4 & 2 \\ 
 		\hline
-		Implement new functionality & 5 & -- \\ 
+		Implement new functionality & 5 & 3 \\ 
 		\hline
-		Testing of new functionality & 2 & -- \\ 
+		Testing of new functionality & 2 & 2 \\ 
 		\hline
-		Update documentation & 4 & -- \\ 
+		Update documentation & 4 & 3 \\ 
 		\hline
-		Finish up and hand in & 1 & --\\ 
+		Finish up and hand in & 1 & 1\\ 
 		\hline 
 		Total time & 22.5 & --\\ [1ex]
 		\hline
@@ -437,16 +449,132 @@ Since the allotted time will not be enough for finishing all of the desired func
 \end{center}
 \newpage
 \subsection{Use cases}
-The Use-cases can be found in the document "use-cases.pdf". The use-cases provided for this iteration are UC ??.
+The new functionality only generate one new use-case, that is authenticating the user when trying to access the "manage words" menu. This use-case is shown below under section "UC 3" and can also for completeness be found in the document "use-cases.pdf". The graphics implementation did not generate a new use case since it only relate to showing more information during play.
+\subsubsection{UC 3}
+Precondition: The user is located in the "main" menu.
+\newline
+Postcondition: The user has moved into the "manage words" menu.
+\subsection{Main Scenario}
+\begin{enumerate}
+	\item Starts when the user has chosen "Manage words." from the main menu.
+	\item The system asks for an authentication password.
+	\item The user provides the correct password.
+	\item The system present the "manage words" menu.
+\end{enumerate}
+\subsection{Alternative scenarios}
+\begin{enumerate}[label=3.\arabic*]
+	\item The user provides an incorrect password.
+	\item The system informs the user that the password was incorrect.
+	\item The system present the main menu.
+\end{enumerate}
 \subsection{Testing}
 \subsubsection{Unit tests}
-The unit tests are found in the repository in the test-folder. A screen-shot of the unit-test when run can be found in figure ?? below.
-\subsubsection{Static and dynamic testing}
-The code was tested statically using code review. The code was also tested dynamically by following the test-cases found in the document "test.pdf" under heading "iteration 4". The test cases aim to cover as many scenarios as possible and the aim is to provide as full a coverage as possible for the new functionality. For a detailed breakdown of the tests performed, see document "test.pdf". 
-\subsection{Class diagrams}
-The class diagrams for the fully implemented game can be found in a separate file called "Class Diagram.pdf" in the folder "Use Cases".
-\subsection{Reflection}
+The unit tests are found in the repository in the test-folder. 
+Since I was working with test-driven development this last iteration I first developed text-code for the functionality I was to develop. I developed test-cases for the Authenticator-class which is used for authenticating that a user should have access to the manage word menu.A screen-shot of the unit-test when run before functionality implementation for the comparePassword method in Authenticator can be found in the figure below.
 
+\begin{figure}[H]\label{fig1}
+	\centering
+	\includegraphics{authtest1.png}
+	\caption{Test run for Authenticator before implementation}
+\end{figure}
+When the functionality had been implemented the test-run worked perfectly. See figure below.
+\begin{figure}[H]\label{fig2}
+	\centering
+	\includegraphics{authtest2.png}
+	\caption{Test run for Authenticator after implementation}
+\end{figure}
+
+Next I needed to developed a method in the Word-class for generating a string showing the letters found and showing the position of the letters missing, e.g. if the word is "letter" and the letters not found are "e" and "t" the string should be shown in the following manner: "l \_ \_ \_ \_ r". Working with TDD I first created a test for the method to be developed. In the figure below the test has been run before implementation of the method.
+\begin{figure}[H]\label{fig3}
+	\centering
+	\includegraphics[scale=0.75]{wordtest1.png}
+	\caption{Test run for "generateStringWord"-method before implementation}
+\end{figure}
+After having developed the function the test-run looks as follows. Thus, the method works as expected.
+\begin{figure}[H]\label{fig4}
+	\centering
+	\includegraphics[scale=0.75]{wordtest2.png}
+	\caption{Test run for "generateStringWord"-method after implementation}
+\end{figure}
+\subsubsection{Static and dynamic testing}
+The code was tested statically using code review. The code was also tested dynamically by following the test-cases presented below (TC 3.1-3.3). These test-cases are also written in the document "test.pdf" for sake of completeness.
+\subsubsection{TC 3.1 - Moving to managing words menu}
+\begin{itemize}
+	\item Name: Authenticating for managing words.
+	\item Test case ref: TC 3.1
+	\item Use case ref: UC 3
+	\item Description: The test case tests how the system responds when the user tries to open the "manage words" menu.
+\end{itemize}
+\emph{Input}
+\begin{enumerate}
+	\item \underline{Precondition:} The user is located in the main menu.
+	\item Select "Manage word." by using the cursor keys.
+	\item Press enter.
+\end{enumerate}
+\emph{Expected}
+\begin{itemize}
+	\item The system prints "You need to be authenticated to manage words."
+	\item The system prompts the user to "Input password:"
+\end{itemize}
+\emph{Comments}
+No problems encountered.
+\subsubsection{TC 3.2 - Inputting an incorrect password}
+\begin{itemize}
+	\item Name: Inputting an incorrect password.
+	\item Test case ref: TC 3.2
+	\item Use case ref: UC 3
+	\item Description: The test case tests how the system responds when the user tries inputs an incorrect password when prompted for a password to move to the "manage words" menu.
+\end{itemize}
+\emph{Input}
+\begin{enumerate}
+	\item \underline{Precondition:} The user has selected "manage words" from the main menu and have been prompted by the system to input a password.
+	\item Write "Frog"
+	\item Press enter.
+\end{enumerate}
+\emph{Expected}
+\begin{itemize}
+	\item The system prints "Unfortunately the password was incorrect"
+	\item The system displays the main menu.
+\end{itemize}
+\emph{Comments}
+No problems encountered.
+\subsubsection{TC 3.3 - Inputting a correct password}
+\begin{itemize}
+	\item Name: Inputting a correct password.
+	\item Test case ref: TC 3.3
+	\item Use case ref: UC 3
+	\item Description: The test case tests how the system responds when the user tries inputs a correct password when prompted for a password to move to the "manage words" menu.
+\end{itemize}
+\emph{Input}
+\begin{enumerate}
+	\item \underline{Precondition:} The user has selected "manage words" from the main menu and have been prompted by the system to input a password.
+	\item Write "deconstructor"
+	\item Press enter.
+\end{enumerate}
+\emph{Expected}
+\begin{itemize}
+	\item The system displays the "Manage Words" menu.
+\end{itemize}
+
+\emph{Comments}
+No problems encountered.
+ 
+\subsection{Class diagram}
+The class diagrams for the fully implemented game can be seen below. The class diagram can also be found in a separate file called "Class Diagram Final.pdf" in the folder "Use Cases".
+\begin{figure}[H]\label{fig5}
+	\centering
+	\includegraphics[scale=0.5]{classdiagramfinal.png}
+	\caption{Class diagram for the final implementation}
+\end{figure}
+\subsection{State machine}
+I did a basic state machine for the authentication of the user trying to get access to the "manage words" menu. This state machine in shown below and can also be found in pdf-format in the folder "Use Cases" in the repository. The state machine is very simple since only two paths are available.
+\begin{figure}[H]\label{fig6}
+	\centering
+	\includegraphics[scale=0.5]{statemachineauth.png}
+	\caption{State Machine for the authentication step.}
+\end{figure}
+\subsection{Reflection}
+This reflection regarding iteration 4 is also the final reflection of the document. For the final iteration I did not have much time. Therefore I choose to only implement a couple of features such that the game can be played and the words can be managed. I also had to do some bug because of problems with the implementation I found in iteration 3. I really liked the test-driven development methodology, so I tried to follow that method in this iteration. It is quite hard to first develop the tests, even for such simple functionality as I was developing here. But it is fun, and my (admittedly anecdotal and based on very limited data) opinion is that there is less bugs when working in this way. Most of the steps went faster in this iteration, which is understandable since I've already done them once. Even though I want to jump right into the coding I do feel that I now have more of a grasp of why this kind of deliberate development will be faster in the long run. One problem for me during the course was that even though we go through all the steps to develop the code in a deliberate manner I found that I wound up with a quite messy code. I think this is partly because I spent most focus on the actual documentation and the new concepts and I believe that in the long run this methodology will lead to better code and a more streamlined work process.
 
 \section{Risk Analysis}
 The overarching risks for this project is connected to the time available for performing the work. The possibility of a hardware failure is for example relatively low, especially considering the redundancy afforded by having two computers available. However, due to severe constraints regarding the time available all risks which reduces the available time are quite serious. Since all events will impact the time available they are all quite serious which make the most probable events most important (since both the impact and the probability are quite high). Thus, a lot of effort will have to be made to make sure that probable events are avoided or mitigated. The staff has children in pre-school which unfortunately equates to a lot of sickness. The probability that this event occurs is hard to reduce which is why the effect of such a event must be mitigated. In an effort to create somewhat of a buffer for these kind of events it is wise to try and keep ahead of schedule if possible.

@@ -29,19 +29,27 @@
 \contentsline {subsubsection}{\numberline {6.3.2}Time estimates and Time log}{16}% 
 \contentsline {subsection}{\numberline {6.4}Iteration 4}{17}% 
 \contentsline {subsubsection}{\numberline {6.4.1}Iteration Plan}{17}% 
-\contentsline {subsubsection}{\numberline {6.4.2}To-do}{18}% 
-\contentsline {subsubsection}{\numberline {6.4.3}Time estimates and Time log}{19}% 
+\contentsline {subsubsection}{\numberline {6.4.2}Risk}{18}% 
+\contentsline {subsubsection}{\numberline {6.4.3}To-do}{18}% 
+\contentsline {subsubsection}{\numberline {6.4.4}Time estimates and Time log}{19}% 
 \contentsline {subsection}{\numberline {6.5}Use cases}{20}% 
-\contentsline {subsection}{\numberline {6.6}Testing}{20}% 
-\contentsline {subsubsection}{\numberline {6.6.1}Unit tests}{20}% 
-\contentsline {subsubsection}{\numberline {6.6.2}Static and dynamic testing}{20}% 
-\contentsline {subsection}{\numberline {6.7}Class diagrams}{20}% 
-\contentsline {subsection}{\numberline {6.8}Reflection}{20}% 
-\contentsline {section}{\numberline {7}Risk Analysis}{20}% 
-\contentsline {subsection}{\numberline {7.1}List of risks}{21}% 
-\contentsline {subsection}{\numberline {7.2}Strategies}{21}% 
-\contentsline {subsubsection}{\numberline {7.2.1}Hardware failure}{21}% 
-\contentsline {subsubsection}{\numberline {7.2.2}Illness}{22}% 
-\contentsline {subsubsection}{\numberline {7.2.3}Underestimation of time requirements}{22}% 
-\contentsline {subsubsection}{\numberline {7.2.4}Too many features required in application}{22}% 
-\contentsline {subsection}{\numberline {7.3}Reflection}{22}% 
+\contentsline {subsubsection}{\numberline {6.5.1}UC 3}{20}% 
+\contentsline {subsection}{\numberline {6.6}Main Scenario}{20}% 
+\contentsline {subsection}{\numberline {6.7}Alternative scenarios}{20}% 
+\contentsline {subsection}{\numberline {6.8}Testing}{20}% 
+\contentsline {subsubsection}{\numberline {6.8.1}Unit tests}{20}% 
+\contentsline {subsubsection}{\numberline {6.8.2}Static and dynamic testing}{23}% 
+\contentsline {subsubsection}{\numberline {6.8.3}TC 3.1 - Moving to managing words menu}{24}% 
+\contentsline {subsubsection}{\numberline {6.8.4}TC 3.2 - Inputting an incorrect password}{24}% 
+\contentsline {subsubsection}{\numberline {6.8.5}TC 3.3 - Inputting a correct password}{25}% 
+\contentsline {subsection}{\numberline {6.9}Class diagram}{26}% 
+\contentsline {subsection}{\numberline {6.10}State machine}{27}% 
+\contentsline {subsection}{\numberline {6.11}Reflection}{28}% 
+\contentsline {section}{\numberline {7}Risk Analysis}{29}% 
+\contentsline {subsection}{\numberline {7.1}List of risks}{29}% 
+\contentsline {subsection}{\numberline {7.2}Strategies}{30}% 
+\contentsline {subsubsection}{\numberline {7.2.1}Hardware failure}{30}% 
+\contentsline {subsubsection}{\numberline {7.2.2}Illness}{30}% 
+\contentsline {subsubsection}{\numberline {7.2.3}Underestimation of time requirements}{30}% 
+\contentsline {subsubsection}{\numberline {7.2.4}Too many features required in application}{31}% 
+\contentsline {subsection}{\numberline {7.3}Reflection}{31}% 

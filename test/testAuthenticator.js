@@ -8,6 +8,7 @@
 
 const chai = require('chai')
 const expect = chai.expect
+const assert = chai.assert
 const chaiAsPromised = require('chai-as-promised')
 chai.use(chaiAsPromised)
 
@@ -15,8 +16,51 @@ const Authenticator = require('../src/lib/Authenticator.js')
 const auth = new Authenticator()
 
 /**
- * Testing the determineNumbers method of Authenticator
+ * Testing the comparePassword method of Authenticator
  */
+
+describe('Authenticator:comparePassword', function () {
+  context('for no input', function () {
+    it('should return "false"', function () {
+      let actual = auth.comparePassword('')
+      assert.isFalse(actual)
+    })
+  })
+})
+
+describe('Authenticator:comparePassword', function () {
+  context('for wrong string input', function () {
+    it('should return "false"', function () {
+      let actual = auth.comparePassword('tjhoh')
+      assert.isFalse(actual)
+    })
+  })
+})
+
+describe('Authenticator:comparePassword', function () {
+  context('for number input', function () {
+    it('should return "false"', function () {
+      let actual = auth.comparePassword(0)
+      assert.isFalse(actual)
+      actual = auth.comparePassword(10)
+      assert.isFalse(actual)
+      actual = auth.comparePassword(543)
+      assert.isFalse(actual)
+    })
+  })
+})
+
+describe('Authenticator:comparePassword', function () {
+  context('for "deconstructor" ', function () {
+    it('should return "true"', function () {
+      let actual = auth.comparePassword('deconstructor')
+      assert.isTrue(actual)
+    })
+  })
+})
+
+/* Testing the determineNumbers method of Authenticator
+ *
 describe('Authenticator:determineNumbers', function () {
   context('for any valid number', function () {
     it('should return an array of length 2', function () {
@@ -34,7 +78,7 @@ describe('Authenticator:determineNumbers', function () {
 
 /**
  * Testing the getSumAndQ method of Authenticator
- */
+ *
 describe('Authenticator:getSumAndQ', function () {
   context('without arguments', function () {
     it('should return 0', function () {
@@ -54,3 +98,4 @@ describe('Authenticator:getSumAndQ', function () {
     })
   })
 })
+*/

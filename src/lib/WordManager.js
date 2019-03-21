@@ -11,6 +11,7 @@ const funcs = require('./Funcs')
 const figlet = require('figlet')
 const chalk = require('chalk')
 const FileHandler = require('./FileHandler.js')
+const clear = require('clear')
 
 /**
  * A class which handles the managing of words.
@@ -26,27 +27,26 @@ class WordManager {
    */
   constructor () {
     this._FileHandler = new FileHandler()
+    this.again = true
   }
 
   /**
    * A function which serves as the entry point to the manage word menu and handles the logic.
    *
-   * @return {[promise]} the promise containing the user choice.
-   * @memberof WordManager
+   *  @memberof WordManager
    */
   async start () {
-    this.displayManageMenu().then(async choice => {
-      let again
+    clear()
+    await this.displayManageMenu().then(async choice => {
       switch (choice.choice) {
         case 'Add word':
-          again = true
-          while (again) {
+          while (this.again) {
             try {
               let word = await funcs.getUserWordInput('Input a word:')
               let difficultyAdd = await funcs.getDifficulty()
               await this._FileHandler.saveWordtoList(difficultyAdd.choice, word.answer)
               console.log(chalk.green('Successfully saved'))
-              if ((await funcs.getUserInput('Add another word? [y/n]')).answer === 'n') { again = false }
+              if ((await funcs.getUserInput('Add another word? [y/n]')).answer === 'n') { this.again = false }
             } catch (error) {
               console.log(error)
             }
@@ -54,8 +54,8 @@ class WordManager {
           this.start()
           break
         case 'Delete word':
-          again = true
-          while (again) {
+          this.again = true
+          while (this.again) {
             console.log('Remove word. Which difficulty are you interested in?')
             let difficultyRem = (await funcs.getDifficulty()).choice
             let listRemove = await this._FileHandler.loadWordList(difficultyRem)
@@ -66,13 +66,13 @@ class WordManager {
               try {
                 await this._FileHandler.removeWordfromList(difficultyRem, wordToRemove)
                 console.log(chalk.green(`${wordToRemove} successfully removed!`))
-                if ((await funcs.getUserInput('Delete another word? [y/n]')).answer === 'n') { again = false }
+                if ((await funcs.getUserInput('Delete another word? [y/n]')).answer === 'n') { this.again = false }
               } catch (error) {
                 console.error(error)
               }
             } else {
               console.log('Ok, maybe a wise choice?')
-              this.start()
+              this.again = false
             }
           }
           this.start()
@@ -80,8 +80,8 @@ class WordManager {
         case 'Main menu':
           break
         case 'Update word':
-          again = true
-          while (again) {
+          this.again = true
+          while (this.again) {
             try {
               console.log('Update word. Which difficulty are you interested in?')
               let difficultyUpdate = (await funcs.getDifficulty()).choice
@@ -94,10 +94,10 @@ class WordManager {
               if (ansUpdate.answer === 'y') {
                 await this._FileHandler.updateWordfromList(difficultyUpdate, wordToUpdate, wordToUpdateTo)
                 console.log(chalk.green(`${wordToUpdate} successfully updated to ${wordToUpdateTo}`))
-                if ((await funcs.getUserInput('Update another word? [y/n]')).answer === 'n') { again = false }
+                if ((await funcs.getUserInput('Update another word? [y/n]')).answer === 'n') { this.again = false }
               } else {
                 console.log('Ok, maybe a wise choice?')
-                this.start()
+                this.again = false
               }
             } catch (error) {
               console.log(error)

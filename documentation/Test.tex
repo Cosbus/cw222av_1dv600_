@@ -200,6 +200,87 @@ No problems encountered.
 \newline
 \emph{Comments}
 No problems encountered.
+\subsubsection{TC 3.1 - Moving to managing words menu}
+\begin{itemize}
+	\item Name: Authenticating for managing words.
+	\item Test case ref: TC 3.1
+	\item Use case ref: UC 3
+	\item Description: The test case tests how the system responds when the user tries to open the "manage words" menu.
+\end{itemize}
+\emph{Input}
+\begin{enumerate}
+	\item \underline{Precondition:} The user is located in the main menu.
+	\item Select "Manage word." by using the cursor keys.
+	\item Press enter.
+\end{enumerate}
+\emph{Expected}
+\begin{itemize}
+	\item The system prints "You need to be authenticated to manage words."
+	\item The system prompts the user to "Input password:"
+\end{itemize}
+\begin{Form}
+	\CheckBox{Test successful}
+	\newline
+	\CheckBox{Test not successful}
+	\newline
+\end{Form}
+\newline
+\emph{Comments}
+No problems encountered.
+\subsubsection{TC 3.2 - Inputting an incorrect password}
+\begin{itemize}
+	\item Name: Inputting an incorrect password.
+	\item Test case ref: TC 3.2
+	\item Use case ref: UC 3
+	\item Description: The test case tests how the system responds when the user tries inputs an incorrect password when prompted for a password to move to the "manage words" menu.
+\end{itemize}
+\emph{Input}
+\begin{enumerate}
+	\item \underline{Precondition:} The user has selected "manage words" from the main menu and have been prompted by the system to input a password.
+	\item Write "Frog"
+	\item Press enter.
+\end{enumerate}
+\emph{Expected}
+\begin{itemize}
+	\item The system prints "Unfortunately the password was incorrect"
+	\item The system displays the main menu.
+\end{itemize}
+\begin{Form}
+	\CheckBox{Test successful}
+	\newline
+	\CheckBox{Test not successful}
+	\newline
+\end{Form}
+\newline
+\emph{Comments}
+No problems encountered.
+\subsubsection{TC 3.3 - Inputting a correct password}
+\begin{itemize}
+	\item Name: Inputting a correct password.
+	\item Test case ref: TC 3.3
+	\item Use case ref: UC 3
+	\item Description: The test case tests how the system responds when the user tries inputs a correct password when prompted for a password to move to the "manage words" menu.
+\end{itemize}
+\emph{Input}
+\begin{enumerate}
+	\item \underline{Precondition:} The user has selected "manage words" from the main menu and have been prompted by the system to input a password.
+	\item Write "deconstructor"
+	\item Press enter.
+\end{enumerate}
+\emph{Expected}
+\begin{itemize}
+	\item The system displays the "Manage Words" menu.
+\end{itemize}
+\begin{Form}
+	\CheckBox{Test successful}
+	\newline
+	\CheckBox{Test not successful}
+	\newline
+\end{Form}
+\newline
+\emph{Comments}
+No problems encountered.
+
 \subsubsection{TC 5.3 - Inputting a new word}
 \begin{itemize}
 	\item Name: Inputting a new word.

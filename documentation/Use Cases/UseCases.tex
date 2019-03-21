@@ -97,6 +97,23 @@ Postcondition: the game is ended.
 	\end{enumerate}
 \end{enumerate}
 
+\section{UC 3 - Authentication for Manage Words}
+Precondition: The user is located in the "main" menu.
+\newline
+Postcondition: The user has moved into the "manage words" menu.
+\subsection{Main Scenario}
+\begin{enumerate}
+	\item Starts when the user has chosen "Manage words." from the main menu.
+	\item The system asks for an authentication password.
+	\item The user provides the correct password.
+	\item The system present the "manage words" menu.
+\end{enumerate}
+\subsection{Alternative scenarios}
+\begin{enumerate}[label=3.\arabic*]
+	\item The user provides an incorrect password.
+	\item The system informs the user that the password was incorrect.
+	\item The system present the main menu.
+\end{enumerate}
 \section{UC 4 - Manage Words}
 Precondition: The admin is located in the "manage words" menu.
 \newline

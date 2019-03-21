@@ -35,6 +35,50 @@ class Word {
   }
 
   /**
+   * A function which generates a string showing the known letters and the unknown letters as '_'
+   *
+   * @param {[string]} word - the full word in an array
+   * @param {[string]} lettersLeft - the letters remaining in the word
+   * @return {string} the string showing the letters and the unknown letters as '_'
+   * @memberof Word
+   */
+  generateWordString (word, lettersLeft) {
+    let temp = [...word]
+    let hangingWord = ''
+    lettersLeft.forEach(lElement => {
+      temp.forEach((hElement, index) => {
+        if (hElement === lElement) {
+          temp.splice(index, 1, '_')
+        }
+      })
+    })
+    temp.forEach(element => {
+      hangingWord = hangingWord + ' ' + element
+    })
+    return hangingWord
+  }
+
+  /**
+   * A function which returns the letters remaining
+   *
+   * @returns {[string]} An array containing the letters remaining
+   * @memberof Word
+   */
+  getLettersRemaining () {
+    return this._lettersRemaining
+  }
+
+  /**
+   * A function which returns the letters of the full word
+   *
+   * @returns {[string]} An array containing the letters of the full word
+   * @memberof Word
+   */
+  getLettersFull () {
+    return this._lettersFull
+  }
+
+  /**
    * A function which returns the word
    *
    * @returns {string} the word

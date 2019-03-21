@@ -47,7 +47,7 @@ class FileHandler {
     const rf = async function (path) {
       return fse.readFile(path, 'utf8')
         .then(words => {
-          return words.split(', ')
+          return words.split(',')
         })
     }
 
@@ -121,7 +121,7 @@ class FileHandler {
    */
     const rw = async function (path, content) {
       let words = await fse.readFile(path, 'utf8')
-      let str = words.replace(', ' + content, '')
+      let str = words.replace(',' + content, '')
       await fse.writeFile(path, str, function (err) {
         if (err) throw err
       })
@@ -161,7 +161,7 @@ class FileHandler {
    */
     const sf = async function (path, content) {
       console.log(content)
-      await fse.appendFile(path, ', ' + content, function (err) {
+      await fse.appendFile(path, ',' + content, function (err) {
         if (err) throw err
       })
     }

@@ -9,10 +9,10 @@
 const figlet = require('figlet')
 const clear = require('clear')
 const chalk = require('chalk')
-const inquirer = require('inquirer')
 const WordList = require('./WordList.js')
 const funcs = require('./Funcs')
 const WordManager = require('./WordManager.js')
+const Authenticator = require('./Authenticator.js')
 
 /**
  * A class which handles the Game.
@@ -31,6 +31,7 @@ class Game {
     this._words = []
     this._wordList = WordList
     this._wordManager = new WordManager()
+    this._authenticator = new Authenticator()
 
     this.displayGreeting()
   }
@@ -63,7 +64,16 @@ class Game {
             })
           break
         case 'Manage words.':
-          await this._wordManager.start()
+          console.log('You need to be authenticated to manage words.')
+          let password = (await funcs.getUserWordInput('Input password:')).answer
+          if (this._authenticator.comparePassword(password)) {
+            await this._wordManager.start()
+            clear()
+          } else {
+            clear()
+            console.log('Unfortunately the password was incorrect.')
+          }
+          this.goMainMenu()
           break
         case 'Quit game.':
           await this.terminateGame()
@@ -88,7 +98,7 @@ class Game {
   async displayMainMenu () {
     console.log(chalk.blue(figlet.textSync('Main Menu', { horizontalLayout: 'full' })))
 
-    return funcs.getAnswerToPrompt(['Play Game!', 'Manage words.', 'See high-scores.', 'Quit game.'])
+    return funcs.getAnswerToPrompt(['Play Game!', 'Manage words.', 'Quit game.'])
   }
 
   /**
@@ -100,17 +110,6 @@ class Game {
   async chooseDifficulty () {
     console.log('Alright, lets play! But first choose difficulty level.')
     return funcs.getDifficulty()
-
-    // return funcs.getAnswerToPrompt(['Easy', 'Moderate', 'Hard'])
-
-    /*   const questions = [
-      {
-        type: 'list',
-        name: 'difficulty',
-        message: 'Make a choice:',
-        choices: ['Easy', 'Moderate', 'Hard']
-      }]
-    return inquirer.prompt(questions) */
   }
 
   /**
@@ -147,6 +146,7 @@ class Game {
     while (word.getNoOfLetters() > 0 && this._tries > 0) {
       console.log('\n---------------------------')
       console.log(`This word still contains ${chalk.blue(word.getNoOfLetters())} unsolved letters.`)
+      console.log(`The word now looks like this:${chalk.blue(word.generateWordString(word.getLettersFull(), word.getLettersRemaining()))}`)
       if (this._tries > 1) {
         console.log(`You have ${chalk.red(this._tries)} tries left.`)
       } else {
@@ -163,7 +163,7 @@ class Game {
             if (word.getNoOfLetters() === 0) {
               console.log(`Yes, the word was "${chalk.green(word.getWord())}"!`)
               console.log('You won!')
-              await this.solveNewWord()
+              this.solveNewWord()
             }
           } else {
             this._tries--
@@ -171,7 +171,7 @@ class Game {
             if (this._tries === 0) {
               console.log('You lost')
               console.log(`The word was ${chalk.green(word.getWord())}.`)
-              await this.solveNewWord()
+              this.solveNewWord()
             }
           }
         })
@@ -189,7 +189,13 @@ class Game {
       await funcs.getUserInput('Do you want to solve a [n]ew word, [q]uit or go to [m]ain menu?')
         .then(async answer => {
           if (answer.answer === 'n') {
-            this.playAWord()
+            await this.chooseDifficulty()
+              .then(ans => {
+                return this.configGame(ans.choice)
+              })
+              .then(async () => {
+                return this.playAWord()
+              })
           } else if (answer.answer === 'q') {
             this.terminateGame('s')
           } else if (answer.answer === 'm') {

@@ -6,8 +6,10 @@
  * @version 1.0.0
  */
 
+require('dotenv').config()
+
 /**
- * A class which handles the logic for authentication.
+ * A class which handles the logic for authentication when moving to the manage word menu.
  *
  * @class Authenticator
  * */
@@ -21,6 +23,22 @@ class Authenticator {
   constructor (num1 = 0, num2 = 0) {
     this._numberOne = num1
     this._numberTwo = num2
+    this._psw = process.env.MANAGEWORDPSW
+  }
+
+  /**
+   * A function which compares a given string to the password
+   *
+   * @param {string} password - the user-given password to be compared to the actual password
+   * @return {boolean} false if the passwords do not match, true otherwise
+   * @memberof Authenticator
+   */
+  comparePassword (password) {
+    if (password === this._psw) {
+      return true
+    } else {
+      return false
+    }
   }
 
   /**
